@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegation</title>
+</head>
+<style>
+    .box{
+        width: 150px;
+        height: 150px;
+    }
+
+    .boxred{
+        background-color: red;
+    }
+    .boxgreen{
+        background-color: green;
+    }
+    .boxyellow{
+        background-color: yellow;
+    }
+    .boxblue{
+        background-color: blue;
+    }
+    .highlight::after{
+        content: "hello";
+    }
+</style>
+<body>
+    <div id="category" style="cursor: pointer;">
+        <div >
+            <p id="laptops">laptop</p>
+        </div>
+        <div >
+            <p id="toys">toys</p>
+        </div>
+        <div >
+            <p id="shirts">shirts</p>
+        </div>
+    </div>
+    <div id="form">
+        <input type="text" id="name" data-uppercase>
+        <input type="button" id="counter" value="1" data-counter>
+    </div>
+    <table id="table">
+        <tr>
+            <td class="box boxred"></td>
+            <td class="box boxblue" ></td>
+        </tr>
+        <tr>
+            <td class="box boxgreen"></td>
+            <td class="box boxyellow"></td>
+        </tr>
+    </table>
+    <button data-toggle-id="subscribe-mail">
+        Show the subscription form
+      </button>
+      
+      <form id="subscribe-mail" hidden>
+        Your mail: <input type="email">
+      </form>
+    
+</body>
+<script src="delegation.js"></script>
+</html>
