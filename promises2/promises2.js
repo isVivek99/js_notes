@@ -32,11 +32,11 @@
 //     })
 // ----------------------------------------------
 
-// new Promise((resolve, reject) => {
-//     setTimeout(() => resolve("result dasd"), 2000)
-//   })
-//     .finally(() => console.log("Promise ready"))
-//     .then(result => console.log(result));
+new Promise((resolve, reject) => {
+    setTimeout(() => resolve("result dasd"), 2000)
+  })
+    .finally(() => console.log("Promise ready"))
+    .then(result => console.log(result));
 // --------------------------------------------
 // let promise = new Promise(function(resolve, reject) {
 //     resolve(1);
@@ -83,6 +83,8 @@
 // }).catch(err=>console.log(err));
 // ----------------------------------------------
 
+// new Promise(resolve => setTimeout(() => console.log(resolve(1)), 3000)),
+
 // Promise.all([
 //     new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
 //     new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
@@ -99,15 +101,15 @@
 //   })
 // ------------------------------------
 
-// let pr = Promise.all([
-//     new Promise((resolve, reject) => {
-//       setTimeout(() => resolve(1), 1000)
-//     }),
-//     2,
-//     3
-//   ]); // 1, 2, 3
+pr = Promise.all([
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve(1), 1000)
+    }),
+    2,
+    3
+  ]); // 1, 2, 3
 
-//   pr.then(console.log)
+  pr.then(console.log)
 // //--------------------------------------------
 // Promise.allSettled([
 //         new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1

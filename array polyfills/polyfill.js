@@ -98,18 +98,20 @@ let arr1 = [15,22,36,21]
 // console.log(foundele);
 // ---------------------reduce-------------------------------------------
 
-arr=[2,4,3,4,6,6,4]
+// arr=[2,4,3,4,6,6,4]
 
-let sum = arr.reduce((accumalator, item)=>accumalator+=item,0)
-console.log(sum);
+// let sum = arr.reduce((accumalator, item)=>accumalator+=item,0)
+// console.log(sum);
 
-Array.prototype.myReduce = function(callback, initialValue){
-    let res = initialValue;
-    for(let index=0; index<this.length; index++){
-        res = callback(res, this[index]);
-    }
-    return res;
-}
+// Array.prototype.myReduce = function(callback, initialValue){
+//     let res = initialValue;
+//     for(let index=0; index<this.length; index++){
+//         res = callback(res, this[index]);
+//     }
+//     return res;
+// }
 
-let sum1 = arr.myReduce((accumalator,item)=>accumalator+=item, 0)
-console.log(sum1);
+// let sum1 = arr.myReduce((accumalator,item)=>accumalator+=item, 0)
+// console.log(sum1);
+// -----------------------------------------------------------------
+

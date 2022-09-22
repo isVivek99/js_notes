@@ -28,11 +28,63 @@
 // x();
 // -----------------------------------------
 
-function makeAdder(x) {
-    return function(y) {
-      return x + y;
-    };
-  }
+// function makeAdder(x) {
+//     return function(y) {
+//       return x + y;
+//     };
+//   }
   
-  var add5 = makeAdder(5);
-  console.log(add5(2));  // 7
+//   var add5 = makeAdder(5);
+//   console.log(add5(2));  // 7
+// ---------------------------------------------
+
+// function outer() {
+//   var num = 0;
+
+//   var message = num;
+//   return function () {
+//     num++;
+//     console.log(num);
+//     console.log(message);
+//   };
+// }
+
+// outer()();
+// ---------------------------------------------------
+// function outer() {
+//   var num = 0;
+
+//   var message = `The value of num is ${num}`;
+//   return function () {
+//     num++;
+//     console.log(num);
+//     console.log(message);
+//   };
+// }
+
+// outer()();
+// ------------------------------
+
+function myStr(str){
+  return new Promise((res,rej)=>{
+  setTimeout(res,1000,str)
+  }
+  );
+  }
+
+  myStr("abc").then(console.log);
+  // ------------------------------
+
+for (let i = 0; i < 8; i++) {
+  let string = "";
+  // printing spaces
+  if(i%2==0){
+    string += " ";
+  }
+  // printing "#"
+  for (let k = 0; k < 4; k++) {
+    string += "# ";
+  }
+  console.log(string);
+}
+

@@ -41,3 +41,14 @@ function fibonacci(n){
 
 console.log(fibonacci(7));
 
+
+// ------------------printname----------------------------
+
+function printString(str){
+    if(str==""){
+      return;
+    }
+    console.log(str[0])
+    printString(str.substring(1))
+}
+printString("vivek");

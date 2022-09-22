@@ -1,22 +1,22 @@
-array = ['A', 'B', 'A', 'C', 'B', 'vivek', "vivek", "ball", "ball", {city:"pune",state:"maharashtra"},
-{city:"pune",state:"maharashtra"}];
+// array = ['A', 'B', 'A', 'C', 'B', 'vivek', "vivek", "ball", "ball", {city:"pune",state:"maharashtra"},
+// {city:"pune",state:"maharashtra"}];
 
-array.sort();
-console.log(array);
-newArray=[];
+// array.sort();
+// console.log(array);
+// newArray=[];
 
-for(let i=0; i<array.length; i++){
+// for(let i=0; i<array.length; i++){
 
-    if(typeof(array[i])===Object){
-        array[i] = JSON.stringify(array[i]);
-    }else{
-        console.log("false");
-    }
-     if(!newArray.includes(array[i])){
-         newArray.push(array[i]);
-     }
-}
-console.log(newArray);
+//     if(typeof(array[i])===Object){
+//         array[i] = JSON.stringify(array[i]);
+//     }else{
+//         console.log("false");
+//     }
+//      if(!newArray.includes(array[i])){
+//          newArray.push(array[i]);
+//      }
+// }
+// console.log(newArray);
 
 
 // ---------------------------------------
@@ -81,17 +81,39 @@ console.log(newArray);
 // ---------------------------------recursion---------------------------------
 
 
-function factorialCalc(num){
+// function factorialCalc(num){
 
-    if(num>=1){
-        return num *(factorialCalc(num-1));
-    }else{
-        return 1; 
+//     if(num>=1){
+//         return num *(factorialCalc(num-1));
+//     }else{
+//         return 1; 
         
-    }
+//     }
     
+// }
+
+
+// let factorial = factorialCalc(5);
+// console.log(factorial);
+
+// ----------------------------------flatten array and objects--------------------
+//flatten the given array,
+
+const arr = [1, 2, [3, 4, [5, 6]]];
+
+let array = [];
+count=0;
+function flatten(arr,depth=1){
+    
+    for(let i=0; i<arr.length; i++){
+        if(Array.isArray(arr[i]) &&  depth>0){
+            flatten(arr[i], depth-1);
+        }else{
+            array.push(arr[i]);
+        }
+    }
+    return array;
 }
 
-
-let factorial = factorialCalc(5);
-console.log(factorial);
+let flatArr = flatten(arr,2);
+console.log(flatArr);

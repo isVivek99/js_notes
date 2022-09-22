@@ -165,23 +165,78 @@
 // 1 < 2 < 3
 // 3 > 2 > 1
 // 3 > 2 > 0
+// --------------------------------------------
 
+// function sum(a){
 
-function sum(a){
-  
- return  function(b){
-    return a+b;
-  }
+//  return  function(b){
+//     return a+b;
+//   }
+// }
+// console.log(sum(2,3));
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement("button");
+//   btn.appendChild(document.createTextNode("Button " + i));
+//   //  anonymous function
+//   (function (i) {
+//     btn.addEventListener("click", function () {
+//       console.log(i);
+//     });
+//   })(i);
+//   document.body.appendChild(btn);
+// }
+// ------------------------------------------------
+// function foo() {
+//   let a = (b = 0);
+//   a++;
+//   return a;
+// }
+// foo();
+// typeof a;
+// typeof b;
+// ---------------------------------------
+// var a=99;
+// function fun(){
+//    a=100;
+//    console.log(a);
+//   }
+//   fun();
+//   console.log(a);
+// --------------------------------
+// let i;
+// for (i = 0; i < 3; i++) {
+//   const log = () => {
+//     console.log(i);
+//   };
+//   setTimeout(log, 100);
+// }
+// ---------------------------------------
+
+// function *generator(i){
+//   yield i;
+//   return "finished";
+// }
+
+// const gen = generator(10);
+// console.log(gen);
+// console.log(gen.next());
+// console.log(gen.next());
+// ------------------normal func vs anonymous func----------------------
+
+let fun = function(){
+  console.log("anonymius bthc");
 }
-console.log(sum(2,3));
-for (var i = 0; i < 5; i++) {
-  var btn = document.createElement("button");
-  btn.appendChild(document.createTextNode("Button " + i));
-  //  anonymous function
-  (function (i) {
-    btn.addEventListener("click", function () {
-      console.log(i);
-    });
-  })(i);
-  document.body.appendChild(btn);
+function gun(){
+  console.log("not anonymius bthc");
 }
+fun();
+console.log(fun.prototype.constructor);
+console.log(gun.prototype.constructor);
+// ----------------------------------------------
+var host = document.querySelector("#host");
+
+var root = host.attachShadow({mode: 'open'});
+var div = document.createElement('div');
+div.textContent = "THis is shadow dom";
+root.appendChild(div);
+console.dir(root);

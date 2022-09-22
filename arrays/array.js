@@ -40,9 +40,9 @@
 // console.log(arr.includes(NaN));
 // // =========reverse=----
 
-let arr = [1, 2, 3, 4, 5];
-arr.reverse();
-console.log(arr);
+// let arr = [1, 2, 3, 4, 5];
+// arr.reverse();
+// console.log(arr);
 // ----------------------------------------
 // for(const n of arr){
 //     console.log(n);
@@ -90,53 +90,58 @@ console.log(arr);
 // }
 // --------------------------------------
 
-let prices = {
-    banana: 1,
-    orange: 2,
-    meat: 4,
-  };
+// let prices = {
+//     banana: 1,
+//     orange: 2,
+//     meat: 4,
+//   };
 
-  console.log(Object.entries(prices));
+//   console.log(Object.entries(prices));
 
-  const obj = Object.fromEntries(
-    Object.entries(prices).map( item => (
-        [item[0], item[1]*2]      
-      ))
-  )
+//   const obj = Object.fromEntries(
+//     Object.entries(prices).map( item => (
+//         [item[0], item[1]*2]      
+//       ))
+//   )
 
-console.log(obj);
+// console.log(obj);
 
-let salaries = {
-    "John": 100,
-    "Pete": 300,
-    "Mary": 250
-  }
- let sum=0;
-  for( let sal of Object.values(salaries)){
-    sum+=sal;
-  }
+// let salaries = {
+//     "John": 100,
+//     "Pete": 300,
+//     "Mary": 250
+//   }
+//  let sum=0;
+//   for( let sal of Object.values(salaries)){
+//     sum+=sal;
+//   }
 
   
-  console.log(sum);
+//   console.log(sum);
 // -----------------------array destructuring-------------------------
-  let [firstName, surname] = ["John","Smith", "alan", 'redav'];
-console.log(firstName,surname)
+//   let [firstName, surname] = ["John","Smith", "alan", 'redav'];
+// console.log(firstName,surname)
 
-let user = {};
-[user.name, ] = ["John"];
-console.log(user);
-// ----------------------------------------
-let [name1, name2 , ...rest] = "vivek lokhande got placed with a  package of 12lpa".split(" ");
-console.log(name1, name2, {rest:rest});
+// let user = {};
+// [user.name, ] = ["John"];
+// console.log(user);
+// // ----------------------------------------
+// let [name1, name2 , ...rest] = "vivek lokhande got placed with a  package of 12lpa".split(" ");
+// console.log(name1, name2, {rest:rest});
 
-// -------------------------------------object destructring-------------
-options = {
-    name:"vivek",
-    surname:"lokhande",
-}
+// // -------------------------------------object destructring-------------
+// options = {
+//     name:"vivek",
+//     surname:"lokhande",
+// }
 
-let { name:a, surname:b } = options;
-console.log(a,b);
+// let { name:a, surname:b } = options;
+// console.log(a,b);
 
-let Name;
-({Name} = {Name:"vivek"})
+// let Name;
+// ({Name} = {Name:"vivek"})
+// --------------------------------------------
+
+console.log(typeof([]));
+console.log(typeof([]+[]));
+console.log(1+"2");

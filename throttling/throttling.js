@@ -23,8 +23,6 @@ function throttle(fn, limit){
             console.log(timer);   
         }
        
-       
-        
     }
 }
 
