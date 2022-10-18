@@ -1,6 +1,5 @@
 // let john = {
 //     year : 1985,
-    
 
 //     calcAge : function(){
 //         console.log(this);
@@ -24,16 +23,16 @@
 // func();//window obj , undefined
 // ------------------------------------------
 
-    // let namea = "vivek";
-    // var name = "lo";
-    // let john = {
-    //         year : 1985,
-    //         name:"jon",    
+// let namea = "vivek";
+// var name = "lo";
+// let john = {
+//         year : 1985,
+//         name:"jon",
 
-    //         printName : () => {
-    //             console.log("hi "+this.name);
-    //     }
-    // }
+//         printName : () => {
+//             console.log("hi "+this.name);
+//     }
+// }
 
 // john.printName()
 
@@ -50,7 +49,7 @@
 
 //     Pet.prototype.getaName = function(){return this};
 //     // this.getName = function(){return this.name};
-  
+
 //     this.getName = () => this.name;
 //   }
 //   console.dir(Pet);
@@ -66,7 +65,7 @@
 //     message: 'Hello, World!',
 //     fun:function() {
 //         console.log(this.message); // What is logged?
-//     }  
+//     }
 // };
 
 // function logMessage() {
@@ -85,12 +84,11 @@ function callback() {
 const object = {
   length: 5,
   method() {
-      console.log(arguments);
+    console.log(arguments);
     arguments[0]();
-  }
+  },
 };
 
 object.method(callback, 1, 2);
 
 // ------------------------------
-  
