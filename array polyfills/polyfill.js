@@ -1,8 +1,16 @@
 // -------------------------forEach--------------------
 
-// arr = [1,2,3]
-// arr.forEach((item)=>{return item*2})
+// const arr = [1, 2, 3];
+// arr.forEach((item, i) => {
+//   arr[i] = item * 2;
+// });
 // console.log(arr);
+
+// Array.prototype.myForEach = function (callback) {
+//   for (let index = 0; index < this.length; index++) {
+//     callback(this[index], index);
+//   }
+// };
 
 // Array.prototype.myforEach = function(callback){
 //     for(let index = 0; index < this.length; index++){
@@ -10,59 +18,67 @@
 //     }
 // }
 
-// arr.myforEach((item, index, array)=>{
-//     console.log(`item:${item}, index:${index}, array:${array}`);
-// })
+// arr.myForEach((item, index) => {
+//   arr[index] = item * 2;
+// });
+// console.log(arr);
 // ------------------------map--------------------
 
-// arr=[1,2,3]
+arr = [1, 2, 3];
 
-// let newArr = arr.map((item,index)=>([item*10,index]))
+// let newArr = arr.map((item, index) => [item * 10, index]);
 // console.log(newArr);
 
+// Array.prototype.myMap = function (callback) {
+//   let resultArray = [];
+//   for (let index = 0; index < this.length; index++) {
+//     resultArray.push(callback(this[index], index));
+//   }
+//   return resultArray;
+// };
 
-// Array.prototype.myMap = function(callback){
+// Array.prototype.myMap = function (callback) {
+//   let arr = [];
+//   for (let i = 0; i < this.length; i++) {
+//     arr[i] = callback(this[i], i);
+//   }
+//   return arr;
+// };
 
-//     let resultArray =[];
-//     for(let index = 0; index < this.length; index++){
-//         resultArray.push(callback(this[index], index)); 
-//     }
-//     return resultArray;
-// }
-
-// let newArray = arr.myMap((item, index)=>{
-//   return [(item*100),index]
-// })
+// let newArray = arr.myMap((item, index) => {
+//   return [item * 100, index];
+// });
 // console.log(newArray);
 // // ------------------------------------every--
 
-let arr1 = [15,22,36,21]
-// let check = arr.every((age)=>age>18);
+// let arr1 = [15, 22, 36, 21];
+// let check = arr.every((age) => age > 18);
 
 // console.log(check);
 
-// Array.prototype.myEvery = function(callback){
+// Array.prototype.myEvery = function (callback) {
+//   let result;
+//   for (let i = 0; i < this.length; i++) {
+//     result = callback(this[i]);
+//   }
+//   return result;
+// };
 
-//     for(let i=0; i<this.length; i++){
-//         if(callback(this[i]) === false) return false;
-//     }
-//     return true;
-// }
+// let myCheck = arr.myEvery((age) => age > 18);
+// console.log(myCheck);
 // --------------------some---------------------------
-// let arr2 = [15,22,36,21]
+// let arr2 = [15, 22, 36, 21];
 
-// Array.prototype.mySome = function(callback){
+// Array.prototype.mySome = function (callback) {
+//   for (let i = 0; i < this.length; i++) {
+//     if (callback(this[i]) == true) return true;
+//   }
+//   return false;
+// };
 
-//     for(let i=0; i<this.length; i++){
-//         if(callback(this[i]) === true) return true;
-//     }
-//     return false;
-// }
-
-// let check = arr2.mySome(age => age>18)
+// let check = arr2.mySome((age) => age > 18);
 // console.log(check);
 // ------------------filter-----------------------------------
-
 
 // arr = [50,46,47,37,49,51,66,42,37,36]
 
@@ -76,7 +92,6 @@ let arr1 = [15,22,36,21]
 //     };
 //     return arrayList;
 // }
-
 
 // let filteredArr = arr.myMap((item,index)=>(item>45))
 // console.log(filteredArr);
@@ -98,20 +113,19 @@ let arr1 = [15,22,36,21]
 // console.log(foundele);
 // ---------------------reduce-------------------------------------------
 
-// arr=[2,4,3,4,6,6,4]
+// arr = [2, 4, 3, 4, 6, 6, 4];
 
-// let sum = arr.reduce((accumalator, item)=>accumalator+=item,0)
+// let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
 // console.log(sum);
 
-// Array.prototype.myReduce = function(callback, initialValue){
-//     let res = initialValue;
-//     for(let index=0; index<this.length; index++){
-//         res = callback(res, this[index]);
-//     }
-//     return res;
-// }
+// Array.prototype.myReduce = function (callback, initialValue) {
+//   let res = initialValue;
+//   for (let index = 0; index < this.length; index++) {
+//     res = callback(res, this[index]);
+//   }
+//   return res;
+// };
 
-// let sum1 = arr.myReduce((accumalator,item)=>accumalator+=item, 0)
+// let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);
 // console.log(sum1);
 // -----------------------------------------------------------------
-

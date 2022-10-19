@@ -86,3 +86,6 @@
 //   }
 //   console.log(string);
 // }
+
+//closures advantages, used in function currying, enacpsulation
+//closre disadvantage, increases mmemory uses, since we are using references

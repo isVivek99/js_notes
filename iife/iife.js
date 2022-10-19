@@ -6,27 +6,28 @@
 //   console.log(test)
 // //   ----------------------------------
 
-(function(window) {
-    'use strict';
-    function Person(name, age){
-        this.name = name;
-        this.age = age;
-    }
+(function (window) {
+  "use strict";
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+  }
 
-    Person.prototype.sayHello = function(){
-            console.log("hi may name is "+this.name,"and my age is"+this.age);
-    }
-    window.Person = Person;
-    
+  Person.prototype.sayHello = function () {
+    console.log("hi may name is " + this.name, "and my age is" + this.age);
+  };
+  window.Person = Person;
+})(window)(
+  // ------------
+  function name() {
+    console.log("iife");
+  }
+)();
 
-})(window)
-
-
-
-function init(){
-    console.log(this);
-    let person = new Person("vivek", 22);
-    person.sayHello();
-    console.log(person);
+function init() {
+  console.log(this);
+  let person = new Person("vivek", 22);
+  person.sayHello();
+  console.log(person);
 }
 init();

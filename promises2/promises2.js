@@ -31,85 +31,108 @@
 
 //     })
 // ----------------------------------------------
+// callback hell
+// function one(callback) {
+//   console.log("call func1");
+//   callback();
+// }
+// function two(callback) {
+//   setTimeout(() => {
+//     console.log("call func2");
+//     callback();
+//   }, 1000);
+// }
 
-new Promise((resolve, reject) => {
-    setTimeout(() => resolve("result dasd"), 2000)
-  })
-    .finally(() => console.log("Promise ready"))
-    .then(result => console.log(result));
-// --------------------------------------------
-// let promise = new Promise(function(resolve, reject) {
-//     resolve(1);
+// function three() {
+//   console.log("call func3");
+// }
 
-//     setTimeout(() => resolve(2), 1000);
+// one(function () {
+//   two(function () {
+//     three();
 //   });
+// });
 
-//   promise.then(data=>alert(data));
+// ----------------------------------------------
+
+// new Promise((resolve, reject) => {
+//   setTimeout(() => resolve("result dasd"), 2000);
+// })
+//   .finally(() => console.log("Promise ready"))
+//   .then((result) => console.log(result));
+// --------------------------------------------
+// let promise = new Promise(function (resolve, reject) {
+//   resolve(1);
+
+//   setTimeout(() => resolve(2), 1000);
+// });
+
+// promise.then((data) => console.log(data));
 // -----------------------------------------------
 
 // function delay(ms) {
-//     return new Promise((resolve,reject) =>{
-//         setTimeout(()=>{
-//             reject(1);
-//         },ms)
-//     })
-//   }
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       reject(1);
+//     }, ms);
+//   });
+// }
 
-//   delay(3000)
+// delay(3000)
 //   .then((data) => alert(`runs ${data}`))
-//   .catch((err)=>console.log(err))
+//   .catch((err) => console.log(err));
 // ------------------------------------------------
 
-//  new Promise((resolve, reject) => {
+// new Promise((resolve, reject) => {
+//   throw new Error("Whoops!");
+// });
+
+// let p1 = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
 //     throw new Error("Whoops!");
-//   })
+//   }, 1000);
+// });
 
-//  let p1 =  new Promise(function(resolve, reject) {
-//     setTimeout(() => {
-//       throw new Error("Whoops!");
-//     }, 1000);
-//   })
-
-//   p1.catch(err=>console.log(err))
+// p1.catch((err) => console.log(err));
 
 // ----------------------------------------------------
 
-// p2 = new Promise((resolve,reject)=>{
-//     resolve("ok");
-// })
-// p2.then(data=>{
-//     console.log(data)
-//     throw new Error("whoops");
-// }).catch(err=>console.log(err));
+// p2 = new Promise((resolve, reject) => {
+//   resolve("ok");
+// });
+// p2.then((data) => {
+//   console.log(data);
+//   throw new Error("whoops");
+// }).catch((err) => console.log(err));
 // ----------------------------------------------
 
-// new Promise(resolve => setTimeout(() => console.log(resolve(1)), 3000)),
-
+// new Promise((resolve) => setTimeout(() => console.log(resolve(1)), 3000)),
+// ----------------------------------------------
 // Promise.all([
-//     new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
-//     new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
-//     new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-//   ]).then(console.log);
+//   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
+//   new Promise((resolve) => setTimeout(() => resolve(2), 2000)), // 2
+//   new Promise((resolve) => setTimeout(() => resolve(3), 1000)), // 3
+// ]).then(console.log);
 // ------------------------------------------
-//  Promise.all([
-//     new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
-//     new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
-//     new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-//   ]).then(res=>{
-//       console.log(res);
-//       res.forEach(item=>console.log(item));
-//   })
+// Promise.all([
+//   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
+//   new Promise((resolve) => setTimeout(() => resolve(2), 2000)), // 2
+//   new Promise((resolve) => setTimeout(() => resolve(3), 1000)), // 3
+// ]).then((res) => {
+//   console.log(res);
+//   res.forEach((item) => console.log(item));
+// });
 // ------------------------------------
 
-pr = Promise.all([
-    new Promise((resolve, reject) => {
-      setTimeout(() => resolve(1), 1000)
-    }),
-    2,
-    3
-  ]); // 1, 2, 3
+// pr = Promise.all([
+//   new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(1), 1000);
+//   }),
+//   2,
+//   3,
+// ]); // 1, 2, 3
 
-  pr.then(console.log)
+// pr.then(console.log);
 // //--------------------------------------------
 // Promise.allSettled([
 //         new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
@@ -137,70 +160,67 @@ pr = Promise.all([
 
 // -------------Promisification--------------------
 
-// function getFruits(callback){
-//     let fruits = ["apple", "grapes", "banana"];
-//     setTimeout(()=>callback(fruits),1000);
+// function getFruits(callback) {
+//   let fruits = ["apple", "grapes", "banana"];
+//   setTimeout(() => callback(fruits), 1000);
 // }
 
-// function promisify(func){
-
-//     return function(...args){
-//         return new Promise((resolve,reject)=>{
-//             try{
-//                 func(resolve)
-//             }catch(e){
-//                 reject(e);
-//             }
-//         })
-//     }
+// function promisify(func) {
+//   return function (...args) {
+//     return new Promise((resolve, reject) => {
+//       try {
+//         func(resolve);
+//       } catch (e) {
+//         reject(e);
+//       }
+//     });
+//   };
 // }
 
 // const promisified = promisify(getFruits);
-// promisified().then(console.log)
-//     .catch(console.log)
+// promisified().then(console.log).catch(console.log);
 // --------------------promisfy-------------------
 
 // const getSumAsync = (num1, num2, callback) => {
-
-//     if (!num1 || !num2) {
-//       return callback(new Error("Missing arguments"), null);
-//     }
-//     return callback(null, num1 + num2);
+//   if (!num1 || !num2) {
+//     return callback(new Error("Missing arguments"), null);
 //   }
+//   return callback(null, num1 + num2);
+// };
 
-//   function promisify(fn){
+// function promisify(fn) {
+//   return function (...args) {
+//     return new Promise((resolve, reject) => {
+//       function customCallback(err, ...res) {
+//         if (err) {
+//           reject(err);
+//         } else {
+//           resolve(res.length === 1 ? res[0] : res);
+//         }
+//       }
+//       args.push(customCallback);
+//       fn.call(this, ...args);
+//     });
+//   };
+// }
 
-//     return function(...args){
-//         return new Promise((resolve,reject)=>{
-//             function customCallback(err,...res){
-//                 if(err){
-//                     reject(err);
-//                 }else{
-//                     resolve(res.length===1?res[0]:res)
-//                 }
-//             }
-//             args.push(customCallback);
-//             fn.call(this, ...args);
-//         })
-//     }
-//   }
-
-//   const getSumPromise = promisify(getSumAsync);
-//   getSumPromise(23,34).then(console.log).catch(err=>console.log(err))
+// const getSumPromise = promisify(getSumAsync);
+// getSumPromise(23, 34)
+//   .then(console.log)
+//   .catch((err) => console.log(err));
 
 // -------------------async-await--------------------------
 
 // async function f() {
+//   let promise = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("done!"), 1000);
+//   });
 
-//     let promise = new Promise((resolve, reject) => {
-//       setTimeout(() => resolve("done!"), 1000)
-//     });
+//   let result = await promise; // wait until the promise resolves (*)
+//   console.log(result); // "done!"
+// }
 
-//     let result = await promise; // wait until the promise resolves (*)
-//     console.log(result); // "done!"
-//   }
-
-//   f();
+// f();
 //   ----------------------------
 // async function showAvatar() {
 
@@ -331,16 +351,64 @@ pr = Promise.all([
 //     throw Error('The fails!')
 //   })
 //   .catch(error => console.log(error.message))
-  
+
 //  -----------------------------------------------
-Promise.resolve('Success!')
-  .then(() => {
-    throw Error('Error all the way!')
-  })
-  .catch((err) => {
-    throw Error(err.message)
-  })
-  .catch((err) => {
-    throw new Error(err.message)
-  })
-  .catch(error => console.log(error.message))
+// Promise.resolve("Success!")
+//   .then(() => {
+//     throw Error("Error all the way!");
+//   })
+//   .catch((err) => {
+//     throw Error(err.message);
+//   })
+//   .catch((err) => {
+//     throw new Error(err.message);
+//   })
+//   .catch((error) => console.log(error.message));
+// ------------------------------------------------
+
+// promise.all() polyfill
+
+const promises = [
+  new Promise((resolve) => resolve(1)),
+  Promise.reject("error found!"),
+];
+
+function newPromiseAll(promises) {
+  const results = [];
+  let promisesCompleted = 0;
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < promises.length; i++) {
+      promises[i]
+        .then((res) => {
+          results[i] = res;
+          promisesCompleted += 1;
+          if (promisesCompleted === promises.length) resolve(results);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    }
+  });
+}
+
+function newPromiseAllSettled(promises) {
+  const results = [];
+  let promisesCompleted = 0;
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < promises.length; i++) {
+      promises[i]
+        .then((res) => {
+          results[i] = { status: "fullfuled", value: res };
+        })
+        .catch((e) => {
+          results[i] = { status: "rejected", reason: `${e}` };
+        });
+    }
+    resolve(results);
+  });
+}
+
+// const response = newPromiseAll(promises);
+const response2 = newPromiseAllSettled(promises);
+response2.then((res) => console.log(res));
+// const answer = response.then((res) => console.log(res)).catch(console.error);

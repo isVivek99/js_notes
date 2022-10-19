@@ -1,19 +1,20 @@
-// class Rabbit {
-//     constructor(type) {
-//         this.type = type;
-//         this.speak = function () {
-//             console.log(`${this.type} rabbit wans a carrot`);
-//         };
-//     }
-// }
-// Rabbit.prototype.teeth = "small";
+class Rabbit {
+  constructor(type) {
+    this.type = type;
+    this.speak = function () {
+      console.log(`${this.type} rabbit wants a carrot`);
+    };
+  }
+}
+Rabbit.prototype.teeth = "small";
 
-
-// wierdRabbit = new Rabbit("wierd");
-// wierdRabbit.teeth = "sharp"
-// wierdRabbit.speak();
-// console.log(wierdRabbit);
-// console.log(Object.getPrototypeOf(Rabbit)== Function.prototype);
+wierdRabbit = new Rabbit("wierd");
+wierdRabbit.teeth = "sharp";
+wierdRabbit.speak();
+console.log(wierdRabbit);
+console.dir(Object.getPrototypeOf(Rabbit));
+console.dir(Function.prototype);
+console.log(Object.getPrototypeOf(Rabbit) === Function.prototype);
 
 // -----------------------------
 
@@ -32,9 +33,8 @@
 
 // }
 
-
 // let admin = {
-    
+
 //     __proto__:user,
 // }
 
@@ -57,15 +57,15 @@
 //       this.isSleeping = true;
 //     }
 //   };
-  
+
 //   let rabbit = {
 //     name: "White Rabbit",
 //     __proto__: animal
 //   };
-  
+
 //   // modifies rabbit.isSleeping
 // //   rabbit.sleep();
-  
+
 //   console.log(rabbit); // true
 //   console.log(animal);
 // ---------------------------------------
@@ -93,34 +93,32 @@
 // let animal = {
 //     eats: true
 //   };
-  
+
 //   function Rabbit(name) {
 //     this.name = name;
 //   }
 //   function bar(){}
 
-  
 //   Rabbit.prototype = animal;
-  
+
 //   let rabbit = new Rabbit("White Rabbit");
 //   console.dir(Rabbit);
 //   console.dir(bar);
-//   console.log(rabbit); 
+//   console.log(rabbit);
 //   console.log( rabbit.eats );
 //   console.log(Number.prototype);
 //   console.log(eval("{nam:1}"));
 // ----------------------------------
 
-class Rabbit {
-  constructor(name) {
-    this.name = name
-  }
+// class Rabbit {
+//   constructor(name) {
+//     this.name = name;
+//   }
 
-  speak(){
-    console.log(`my name is ${this.name}`);
-  }
-}
+//   speak() {
+//     console.log(`my name is ${this.name}`);
+//   }
+// }
 
-let wierdRabbit = new Rabbit("dancer");
-console.dir(Rabbit);
-
+// let wierdRabbit = new Rabbit("dancer");
+// console.dir(Rabbit);
