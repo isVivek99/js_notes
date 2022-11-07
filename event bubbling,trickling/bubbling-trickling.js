@@ -1,15 +1,23 @@
-document.querySelector("#grandparent")
-.addEventListener("click",()=>{
+document.querySelector("#grandparent").addEventListener(
+  "click",
+  () => {
     console.log("grandparent clicked!");
-},false)
+  },
+  false
+);
 
-document.querySelector("#parent")
-.addEventListener("click",()=>{
+document.querySelector("#parent").addEventListener(
+  "click",
+  () => {
     console.log("parent clicked!");
-},false)
+  },
+  false
+);
 
-document.querySelector("#child")
-.addEventListener("click",()=>{
+document.querySelector("#child").addEventListener(
+  "click",
+  () => {
     console.log("child clicked!");
-},false)
-
+  },
+  false
+);

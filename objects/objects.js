@@ -1,36 +1,36 @@
-// let user  = {
-//     name:"vivek",
-//     age:30
+// let user = {
+//   name: "vivek",
+//   age: 30,
+// };
+
+// let clone = {};
+
+// for (let key in user) {
+//   clone[key] = user[key];
 // }
+// let perm1 = { makeMoney: true };
+// Object.assign(user, perm1);
 
-// let clone={}
+// let clone2 = Object.assign({}, user);
 
-// for(let key in user){
-//     clone[key] = user[key];
-// }
-// let perm1 = { makeMoney:true } 
-// Object.assign(user,perm1)
-
-// let clone2 = Object.assign({}, user)
-
-// console.log(user==clone2);
+// console.log(user == clone2);
 // console.log(user);
 // console.log(clone);
-// console.log(user==clone);
+// console.log(user == clone);
 // --------------------------------------------------
 // let user = {
 //     userName: "John",
 //     age: 30,
-  
+
 //     sayHi() {
 //       console.log(this.userName);
 //       console.log(this);
-      
+
 //     }
 //   -----------------------------------
 //   };
 //   "use strict"
-  
+
 //   user.sayHi(); // John
 
 //   function sayHi(){
@@ -44,13 +44,13 @@
 //       ref: this
 //     };
 //   }
-  
+
 //   let user = makeUser();
-  
-//   console.log( user.ref ); 
+
+//   console.log( user.ref );
 // // ------------------------------------
 // function makeUser() {
-    
+
 //     return {
 //         obj:this,
 //       name: "John",
@@ -60,7 +60,7 @@
 //       }
 //     };
 //   }
-  
+
 //   let user = makeUser();
 //   console.log(user.obj);
 //   console.log(user.ref());
@@ -73,9 +73,8 @@
 //         console.log("Hello my name is", this.name);
 //     }
 
-
 //   }
-  
+
 //   let user = new User("Jack");
 //   console.log(user);
 //   user.sayHi();
@@ -104,12 +103,11 @@
 // console.log(calculator.sum());
 // -------------------------------------------
 
-
 // function Person(name){
 //     this.name = name;
 
 //     Person.prototype.printNameArrow = () => {
-            
+
 //         setTimeout(()=>{
 //             console.log(this.name);
 //         },0)
@@ -127,7 +125,7 @@
 //     }
 
 //         printNameArrow = () => {
-            
+
 //             setTimeout(()=>{
 //                 console.log(this.name);
 //             },0)
@@ -138,7 +136,7 @@
 //                 console.log(this.name);
 //             },0)
 //         };
-    
+
 // }
 // let person = new Person("vivek");
 // console.dir(Person)
@@ -156,7 +154,7 @@
 //         console.log(`my name is ${this.name} ${this.surname}`);
 //     }
 // ,
-    
+
 //     set _name(value){
 //         if(value.trim().length<4){
 //             alert("enter a valid name!");
@@ -171,12 +169,11 @@
 
 // -------
 
-
 // obj1 = {
 //     name:"vivek",
 //     func:function(){
 //         console.log(this);
-        
+
 //         let print = ()=> {
 //             console.log(this.name);
 //         }
@@ -184,7 +181,6 @@
 //     }
 
 // }
-
 
 // obj1.func();
 // // ----------------------9PM Sessions---------------
@@ -218,35 +214,35 @@
 // }
 
 // var obj2 = Object.assign({},obj);
-// var obj3 = Object.assign({},obj,{skills:[...obj.skills,"NextJs"]}); 
+// var obj3 = Object.assign({},obj,{skills:[...obj.skills,"NextJs"]});
 // console.log(obj);
 // console.log(obj2);
 // console.log(obj3);
 
 // --------------Bind Pollyfill---------------------------
 
-let nameObj = {
-  firstName : "vivek",
-  lastName : "lokhande"
-}
+// let nameObj = {
+//   firstName : "vivek",
+//   lastName : "lokhande"
+// }
 
-let printName = function(hometown,state,country){
-  console.log("My name is",this.firstName+" "+this.lastName,"from",hometown,state,country);
-}
+// let printName = function(hometown,state,country){
+//   console.log("My name is",this.firstName+" "+this.lastName,"from",hometown,state,country);
+// }
 
-let printMyName = printName.bind(nameObj, "pune");
-printMyName("Maharashtra","India");
+// let printMyName = printName.bind(nameObj, "pune");
+// printMyName("Maharashtra","India");
 
-Function.prototype.myBind = function(...args){
-  let self = this;
-  let params = args.slice(1);
-    return function(...args2){
-      console.log(args,args2);
-      self.apply(args[0],[...params, ...args2]);
-      
-    }
+// Function.prototype.myBind = function(...args){
+//   let self = this;
+//   let params = args.slice(1);
+//     return function(...args2){
+//       console.log(args,args2);
+//       self.apply(args[0],[...params, ...args2]);
 
-}
+//     }
 
-let printMyName2 = printName.myBind(nameObj,"pune");
-printMyName2("Maharashtra",);
+// }
+
+// let printMyName2 = printName.myBind(nameObj,"pune");
+// printMyName2("Maharashtra",);

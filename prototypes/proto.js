@@ -1,43 +1,45 @@
-class Rabbit {
-  constructor(type) {
-    this.type = type;
-    this.speak = function () {
-      console.log(`${this.type} rabbit wants a carrot`);
-    };
-  }
-}
-Rabbit.prototype.teeth = "small";
+// class Rabbit {
+//   constructor(type) {
+//     this.type = type;
+//     this.speak = function () {
+//       console.log(`${this.type} rabbit wants a carrot`);
+//     };
+//   }
 
-wierdRabbit = new Rabbit("wierd");
-wierdRabbit.teeth = "sharp";
-wierdRabbit.speak();
-console.log(wierdRabbit);
-console.dir(Object.getPrototypeOf(Rabbit));
-console.dir(Function.prototype);
-console.log(Object.getPrototypeOf(Rabbit) === Function.prototype);
+//   code() {
+//     console.log("in code");
+//   }
+// }
+// Rabbit.prototype.teeth = "small";
+// console.dir(Rabbit);
+// wierdRabbit = new Rabbit("wierd");
+// wierdRabbit.teeth = "sharp";
+// wierdRabbit.speak();
+// console.log(wierdRabbit);
+// console.dir(Object.getPrototypeOf(Rabbit));
+// console.dir(Function.prototype);
+// console.log(Object.getPrototypeOf(Rabbit) === Function.prototype);
 
 // -----------------------------
 
 // let user = {
+//   name: "vivek",
+//   surname: "lokhande",
 
-//     name:"vivek",
-//     surname:"lokhande",
+//   set fullName(value) {
+//     [this.name, this.surname] = value.split(" ");
+//   },
 
-//     set fullName(value){
-//         [this.name, this.surname] = value.split(" ");
-//     },
-
-//     get fullName(){
-//         return `my name is ${this.name} ${this.surname}`
-//     }
-
-// }
+//   get fullName() {
+//     return `my name is ${this.name} ${this.surname}`;
+//   },
+// };
 
 // let admin = {
+//   __proto__: user,
+// };
 
-//     __proto__:user,
-// }
-
+// console.log(admin);
 // console.log(admin.fullName);
 // admin.fullName = "Jyoti Lokhande";
 // console.log(admin.fullName);
@@ -48,45 +50,46 @@ console.log(Object.getPrototypeOf(Rabbit) === Function.prototype);
 
 // animal has methods
 // let animal = {
-//     walk() {
-//       if (!this.isSleeping) {
-//         alert(`I walk`);
-//       }
-//     },
-//     sleep() {
-//       this.isSleeping = true;
+//   walk() {
+//     if (!this.isSleeping) {
+//       console.log(`I walk`);
 //     }
-//   };
+//   },
+//   sleep() {
+//     this.isSleeping = true;
+//   },
+// };
 
-//   let rabbit = {
-//     name: "White Rabbit",
-//     __proto__: animal
-//   };
+// let rabbit = {
+//   name: "White Rabbit",
+//   __proto__: animal,
+// };
 
-//   // modifies rabbit.isSleeping
-// //   rabbit.sleep();
+// // modifies rabbit.isSleeping
+// rabbit.sleep();
 
-//   console.log(rabbit); // true
-//   console.log(animal);
+// console.log(rabbit); // true
+// console.log(animal);
 // ---------------------------------------
 
 // let animal = {
-//     eats:true,
-// }
+//   eats: true,
+// };
 
 // let rabbit = {
-//     jumps:true,
-//     __proto__:animal
-// }
+//   jumps: true,
+//   __proto__: animal,
+// };
 
 // console.log(Object.keys(rabbit));
-
-// for(let key in rabbit){
-//     console.log(key);
+// console.log(rabbit);
+// for (let key in rabbit) {
+//   console.log(key);
 // }
-// for(let key in rabbit){
-//     let isOwn = rabbit.hasOwnProperty(key);
-//     if(isOwn)console.log(key);
+// for (let key in rabbit) {
+//   console.log("key:", key);
+//   let isOwn = rabbit.hasOwnProperty(key);
+//   if (isOwn) console.log(key);
 // }
 // ---------------prototype in function-------------
 

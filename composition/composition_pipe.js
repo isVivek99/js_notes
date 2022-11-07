@@ -27,6 +27,7 @@ function compose(...functions) {
     return result;
   };
 }
+
 // we can do pipe just by changing the the iteration from leftToRight
 // function composition
 var output_final = compose(square, double)(2);

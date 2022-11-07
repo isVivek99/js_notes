@@ -1,38 +1,36 @@
-// const myPromise = new Promise((resolve, reject)=>{
-//     setTimeout(()=>reject(new Error("oops")),1000);
-    
+// const myPromise = new Promise((resolve, reject) => {
+//   setTimeout(() => reject(new Error("oops")), 1000);
 // });
 // console.log(myPromise);
-// console.log( typeof myPromise );
+// console.log(typeof myPromise);
+// myPromise.then((data) => console.log(data)).catch((err) => console.log(err));
+
 // ------------------------------------------------------
 // let stocks = {
-//     Fruits : ["strawberry", "grapes", "banana", "apple"],
-//     liquid : ["water", "ice"],
-//     holder : ["cone", "cup", "stick"],
-//     toppings : ["chocolate", "peanuts"],
-//  };
+//   Fruits: ["strawberry", "grapes", "banana", "apple"],
+//   liquid: ["water", "ice"],
+//   holder: ["cone", "cup", "stick"],
+//   toppings: ["chocolate", "peanuts"],
+// };
 
-//  let order = (Fruit_name, call_production) => {
-//     setTimeout(()=>{
-//         console.log(`${stocks.Fruits[Fruit_name]} selected`);
-//         call_production();
-//     }, 2000)
-    
-//  }
+// let order = (Fruit_name, call_production) => {
+//   setTimeout(() => {
+//     console.log(`${stocks.Fruits[Fruit_name]} selected`);
+//     call_production();
+//   }, 2000);
+// };
 
-//  let production = () =>{
-    
-//     setTimeout(()=>{
-//         console.log("order recieved, production started");
-//         setTimeout(()=>{
-//             console.log("fruit has been chopped");
-//         }, 2000)
-//     },0000)
-    
-//  }
+// let production = () => {
+//   setTimeout(() => {
+//     console.log("order recieved, production started");
+//     setTimeout(() => {
+//       console.log("fruit has been chopped");
+//     }, 2000);
+//   }, 0000);
+// };
 
-//  order(0,production);
-//  above is a example of callback hell , if we want to run async functions 
+// order(0, production);
+//  above is a example of callback hell , if we want to run async functions
 // now to demonstrate promise chaining
 // -----------------------------------------------------------------------
 // const isShopOpen = true;
@@ -44,13 +42,12 @@
 //             setTimeout(()=>{
 //                 resolve(work())
 //             },time)
-            
+
 //         }else{
 //             reject(console.log("shop closed!"));
 //         }
 //     })
 // }
-
 
 // order(2000, ()=>console.log(`${stocks.Fruits[0]} was selected!`))
 //     .then(()=>{
@@ -77,7 +74,7 @@
 //         }else{
 //             reject("customer left!")
 //         }
-        
+
 //     })
 // }
 
@@ -93,67 +90,61 @@
 // console.log("dishes");
 // console.log("tables");
 
-
 // --------------------------------------------------------
 
-// function first(callback){
-//     console.log("in first");
-//     callback();
-// }
-// function second(callback){
-//     setTimeout(()=>{
-//         console.log("in second");
-//         callback();
-//     },2000)
-    
-    
-// }
-// function third(){
-//     console.log("in third");
-    
-// }
+function first(callback) {
+  console.log("in first");
+  callback();
+}
+function second(callback) {
+  setTimeout(() => {
+    console.log("in second");
+    callback();
+  }, 2000);
+}
+function third() {
+  console.log("in third");
+}
 
-
-// first( 
-//     function(){
-//         second(function(){
-//             third();
-//         });
-//     });
+first(function () {
+  second(function () {
+    third();
+  });
+});
 // ==============================
 
-// function first(){
-//     return new Promise((resolve, reject)=>{
-//         resolve("resolved func one");
-//     })
-// }
+function first() {
+  return new Promise((resolve, reject) => {
+    resolve("resolved func one");
+  });
+}
 
-// function second(){
-//     return new Promise((resolve, reject)=>{
-//         setTimeout(()=>( resolve("resolved func 2")),2000)
-//        ;
-//     })
-// }
+function second() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve("resolved func 2"), 2000);
+  });
+}
 
-// function third(){
-//     console.log("third");
-// }
+function third() {
+  console.log("third");
+}
 
-// first()
-// .then((res)=>{
-//     console.log(res);
-//     return second();
-// })
-// .then((res2)=>{
-//     console.log(res2);
-//     third();
-// }).catch((err)=>console.log(err))
+first()
+  .then((res) => {
+    console.log(res);
+    return second();
+  })
+  .then((res2) => {
+    console.log(res2);
+    third();
+  })
+  .catch((err) => console.log(err));
 
-// Promise.all([
-//     first().then((res)=>console.log(res)),
-//     second().then((res)=>console.log(res)),
-//     third(),
-// ])
+Promise.all([
+  first().then((res) => console.log(res)),
+  second().then((res) => console.log(res)),
+  third(),
+]);
 
 // ------------------------------------------------------------------
 
@@ -165,12 +156,11 @@
 //     await setTimeout(()=>{
 //         console.log("in second");
 //     },2000)
-    
-    
+
 // }
 // function third(){
 //     console.log("in third");
-    
+
 // }
 
 // async function main(){
@@ -180,9 +170,6 @@
 // }
 // console.log(main);
 // main();
-
-
-
 
 // ----------------------------------------------------------------------
 // const calculate = (a,b,c) => {
@@ -196,7 +183,6 @@
 //         },2000)
 //     })
 // }
-
 
 // calculate(1,2,3)
 // .then((res)=>{
@@ -255,17 +241,17 @@
 
 // async function run(){
 //     return new Promise((res, rej)=>{
-//     console.log("Hello roc8") 
+//     console.log("Hello roc8")
 //     setTimeout (res, 2000, "Hello World")
-//     console.log("Hello JS") 
-//     }) 
+//     console.log("Hello JS")
+//     })
 //     }
 
 //     async function print(){
-//         console.log("Printing") 
+//         console.log("Printing")
 //         const r = await run();
-//         console.log(r) 
-//         console.log(" Done") 
+//         console.log(r)
+//         console.log(" Done")
 //     }
 
 //     print().then(res=>console.log(res))
@@ -276,7 +262,6 @@
 //     //done
 //     //undef
 // -------------------------------------------------
-
 
 // function job(num){
 
@@ -301,22 +286,24 @@
 
 // ------------------------------------------------------------
 
-var p =Promise.all([]);
-console.log(p);
-var  x = p.then((data=>{
-console.log(data) 
-})) 
+// var p = Promise.all([]);
+// console.log(p);
+// var x = p.then((data) => {
+//   console.log(data);
+// });
 
-console.log(x)
-x.then(data=>{console.log(data);console.log(x)})
-console.log("----------------------------");
-
+// console.log(x);
+// x.then((data) => {
+//   console.log(data);
+//   console.log(x);
+// });
+// console.log("----------------------------");
 
 // var p =Promise.all([]);
 // console.dir(p);
 // var  x = p.then(data=>{
-// console.dir(data) 
-// }) 
+// console.dir(data)
+// })
 
 // console.dir(x)
 // --------------------
@@ -324,26 +311,25 @@ console.log("----------------------------");
 // let promise1 = new Promise((resolve,reject) => {
 
 //     setTimeout(() => {
-  
+
 //       resolve('first');
-  
+
 //     },2000)
 //   })
-  
+
 //   promise1
 //   .then((x) => {
 //      return promise2;
 //   })
 //   .then(y => console.log(y))
 //   .catch(err => console.log(err));
-  
-  
+
 //   let promise2 =  new Promise((resolve,reject) => {
 //     console.log("here in 2 ");
 //        setTimeout(() => {
-  
+
 //             resolve('second');
-  
+
 //        },3000);
 //   })
 //   let promise3 = new Promise((resolve,reject) => {
@@ -351,6 +337,5 @@ console.log("----------------------------");
 //      setTimeout(() => {
 //        resolve('third');
 //      })
-  
+
 //   },5000);
-  
