@@ -1,22 +1,16 @@
 // -------------------------forEach--------------------
 
 // const arr = [1, 2, 3];
-// arr.forEach((item, i) => {
-//   arr[i] = item * 2;
-// });
-// console.log(arr);
+// // arr.forEach((item, i) => {
+// //   arr[i] = item * 2;
+// // });
+// // console.log(arr);
 
 // Array.prototype.myForEach = function (callback) {
 //   for (let index = 0; index < this.length; index++) {
 //     callback(this[index], index);
 //   }
 // };
-
-// Array.prototype.myforEach = function(callback){
-//     for(let index = 0; index < this.length; index++){
-//         callback(this[index], index, this);
-//     }
-// }
 
 // arr.myForEach((item, index) => {
 //   arr[index] = item * 2;
@@ -28,14 +22,6 @@ arr = [1, 2, 3];
 
 // let newArr = arr.map((item, index) => [item * 10, index]);
 // console.log(newArr);
-
-// Array.prototype.myMap = function (callback) {
-//   let resultArray = [];
-//   for (let index = 0; index < this.length; index++) {
-//     resultArray.push(callback(this[index], index));
-//   }
-//   return resultArray;
-// };
 
 // Array.prototype.myMap = function (callback) {
 //   let arr = [];
@@ -113,19 +99,19 @@ arr = [1, 2, 3];
 // console.log(foundele);
 // ---------------------reduce-------------------------------------------
 
-// arr = [2, 4, 3, 4, 6, 6, 4];
+arr = [2, 4, 3, 4, 6, 6, 4];
 
-// let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
-// console.log(sum);
+let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
+console.log(sum);
 
-// Array.prototype.myReduce = function (callback, initialValue) {
-//   let res = initialValue;
-//   for (let index = 0; index < this.length; index++) {
-//     res = callback(res, this[index]);
-//   }
-//   return res;
-// };
+Array.prototype.myReduce = function (callback, initialValue) {
+  let res = initialValue;
+  for (let index = 0; index < this.length; index++) {
+    res = callback(res, this[index]);
+  }
+  return res;
+};
 
-// let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);
-// console.log(sum1);
+let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);
+console.log(sum1);
 // -----------------------------------------------------------------

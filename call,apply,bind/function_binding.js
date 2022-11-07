@@ -6,7 +6,7 @@
 //   },
 // };
 
-// myName.printfullName();
+// // myName.printfullName();
 
 // let newPrintFullName = myName.printfullName;
 
@@ -21,30 +21,30 @@
 // ---------------------------bind--------------------------
 
 // let user = {
+//   firstname: "vivek",
+//   sayHi() {
+//     console.log("hi " + this.firstname);
+//   },
+// };
 
-//     firstname:"vivek",
-//     sayHi(){
-//         console.log("hi "+this.firstname);
-//     }
-// }
-
-// setTimeout(user.sayHi, 1000);//undefined
-// setTimeout(()=>{user.sayHi()}, 1000)// hi vivek
+// setTimeout(user.sayHi, 1000); //undefined
+// setTimeout(() => {
+//   user.sayHi();
+// }, 1000); // hi vivek
 
 // --------------------------using bind--------------------------
 
-// let user ={
-
-//     firstname:"vivek",
-//     sayHi(){
-//         console.log("hi "+this.firstname);
-//     }
-// }
-// console.log(user);
+// let user = {
+//   firstname: "vivek",
+//   sayHi() {
+//     console.log("hi " + this.firstname);
+//   },
+// };
+// // console.log(user);
 // let sayHi = user.sayHi.bind(user);
-// console.log(user);
+// // console.log(user);
 // console.dir(sayHi);
-// setTimeout(sayHi, 1000);// hi vivek (no error since function is bound)
+// setTimeout(sayHi, 1000); // hi vivek (no error since function is bound)
 
 // // ---------------binding arguments-----------------------------------
 
@@ -79,9 +79,9 @@
 // };
 
 // printName.call(name1, "pune", "maharashtra");
-// printName.apply(name1, ["pune", "maharashtra"]);
+// printName.apply(name1, ["pune", "maharashtra"]); //similar to call but takes array of parameters as args
 // printNameBound = printName.bind(name1, "pune", "maharashtra"); // similar to
-// // call, but returns a function to be ran later, wheras call will immediatly invoke
+// call, but returns a function to be ran later, wheras call will immediatly invoke
 
 // console.log(printNameBound());
 
@@ -95,32 +95,6 @@
 // fa();
 
 // -------------myBind-------------------------------------
-
-// let name1 = {
-//   name: "vivek",
-//   lastName: "lokhande",
-// };
-
-// function printName(hometown, state, area) {
-//   console.log(
-//     "my name is",
-//     this.name + "",
-//     this.lastName + " from " + hometown,
-//     state,
-//     area
-//   );
-// }
-
-// Function.prototype.myBind = function (...args) {
-//   console.log(this, ...args);
-//   return (...args2) => {
-//     this.apply(args[0], [...args[1], ...args2]);
-//   };
-// };
-
-// const printMyName = printName.myBind(name1, ["pune", "india"]);
-// printMyName("hingne");
-// -------------myCall-------------------------------------
 
 let name1 = {
   name: "vivek",
@@ -137,8 +111,35 @@ function printName(hometown, state, area) {
   );
 }
 
-Function.prototype.myCall = function (context, ...args) {
-  context.myFn = this;
-  return context.myFn(...args);
+Function.prototype.myBind = function (context, ...args) {
+  console.log(context, ...args);
+  return (...args2) => {
+    this.apply(context, [...args, ...args2]);
+  };
 };
-const printMyName = printName.myCall(name1, "pune", "india", "hingne");
+
+const printMyName = printName.myBind(name1, ["pune", "india"]);
+printMyName("hingne");
+// -------------myCall-------------------------------------
+
+// let name1 = {
+//   name: "vivek",
+//   lastName: "lokhande",
+// };
+
+// function printName(hometown, state, area) {
+//   console.log(
+//     "my name is",
+//     this.name + "",
+//     this.lastName + " from " + hometown,
+//     state,
+//     area
+//   );
+// }
+
+// Function.prototype.myCall = function (context, ...args) {
+//   console.log(this);
+//   context.myFn = this;
+//   return context.myFn(...args);
+// };
+// const printMyName = printName.myCall(name1, "pune", "india", "hingne");
