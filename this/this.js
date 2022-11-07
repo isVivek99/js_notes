@@ -3,7 +3,10 @@
 //   return {
 //     name: "vivek",
 //     ref: this,
+//     //ref doesnt have a reference which is being bound,
+//     // hence it refers to window object
 //     ref2() {
+//       //ref2 is being called on user, hence it has a reference
 //       return this;
 //     },
 //   };
@@ -23,38 +26,38 @@
 // user.getDetails();
 
 // // --------------------
-let john = {
-  year: 1985,
+// let john = {
+//   year: 1985,
 
-  calcAge: function () {
-    console.log(this);
-    console.log(2021 - this.year);
-    let self = this;
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2021 - this.year);
+//     let self = this;
 
-    function inner() {
-      console.log(self);
-      console.log(this);
-    }
-    inner();
+//     function inner() {
+//       console.log(self);
+//       console.log(this);
+//     }
+//     inner();
 
-    let inner2 = () => {
-      console.log(this);
-    };
-    inner2();
-  },
-  returnThis: () => {
-    console.log(this);
-  },
-};
-// john.calcAge(); //{john}, 31
+//     let inner2 = () => {
+//       console.log(this);
+//     };
+//     inner2();
+//   },
+//   returnThis: () => {
+//     console.log(this);
+//   },
+// };
+// // john.calcAge(); //{john}, 31
 // john.calcAge();
-john.returnThis();
+// john.returnThis();
 // let func = john.calcAge;
 // func(); //window obj , undefined
 // // ------------------------------------------
 
 // let namea = "vivek";
-// var name = "lo";
+// var name = "lokhande";
 // let john = {
 //   year: 1985,
 //   name: "jon",
@@ -146,7 +149,7 @@ john.returnThis();
 
 // const result = calc.add(10).mul(5).sub(30);
 // console.log(result.total);
-// ----------------------
+// // ----------------------
 
 const user = {
   name: "vivek",

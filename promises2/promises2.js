@@ -181,33 +181,33 @@
 // promisified().then(console.log).catch(console.log);
 // --------------------promisfy-------------------
 
-// const getSumAsync = (num1, num2, callback) => {
-//   if (!num1 || !num2) {
-//     return callback(new Error("Missing arguments"), null);
-//   }
-//   return callback(null, num1 + num2);
-// };
+const getSumAsync = (num1, num2, callback) => {
+  if (!num1 || !num2) {
+    return callback(new Error("Missing arguments"), null);
+  }
+  return callback(null, num1 + num2);
+};
 
-// function promisify(fn) {
-//   return function (...args) {
-//     return new Promise((resolve, reject) => {
-//       function customCallback(err, ...res) {
-//         if (err) {
-//           reject(err);
-//         } else {
-//           resolve(res.length === 1 ? res[0] : res);
-//         }
-//       }
-//       args.push(customCallback);
-//       fn.call(this, ...args);
-//     });
-//   };
-// }
+function promisify(fn) {
+  return function (...args) {
+    return new Promise((resolve, reject) => {
+      function customCallback(err, ...res) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res.length === 1 ? res[0] : res);
+        }
+      }
+      args.push(customCallback);
+      fn.call(this, ...args);
+    });
+  };
+}
 
-// const getSumPromise = promisify(getSumAsync);
-// getSumPromise(23, 34)
-//   .then(console.log)
-//   .catch((err) => console.log(err));
+const getSumPromise = promisify(getSumAsync);
+getSumPromise(23, 34)
+  .then(console.log)
+  .catch((err) => console.log(err));
 
 // -------------------async-await--------------------------
 
@@ -398,7 +398,7 @@ function newPromiseAllSettled(promises) {
     for (let i = 0; i < promises.length; i++) {
       promises[i]
         .then((res) => {
-          results[i] = { status: "fullfuled", value: res };
+          results[i] = { status: "fullfilled", value: res };
         })
         .catch((e) => {
           results[i] = { status: "rejected", reason: `${e}` };

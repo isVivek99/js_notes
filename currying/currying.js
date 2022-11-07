@@ -10,7 +10,7 @@
 //     console.log(x * y);
 //   };
 // }
-// let multByFive = multiply2(2);
+// let multByFive = multiply2(2)(5);
 // multByFive(5);
 // ------------------------------
 
@@ -39,6 +39,7 @@
 // function add(param1) {
 //   return function (param2) {
 //     return function () {
+//       console.log(param1 + param2);
 //       return param1 + param2;
 //     };
 //   };
@@ -50,6 +51,7 @@
 function add(a) {
   return function (b) {
     if (b) return add(a + b);
+    return a;
   };
 }
 console.log(add(5)(2)(4)(8)());

@@ -1,30 +1,31 @@
-// array = [1,2,3,4]
-// //let newArr = array.splice(0,2,{"fuckin":"arrays"});
-// let newArr = array.splice(0,10,20,30); // splice(startIndex, noOfEle)
-// console.log(array, newArr);
+// array = [1, 2, 3, 4];
+// let newArr = array.splice(0, 2, { fuckin: "arrays" });
+// // let newArr = array.splice(0, 10, 20, 30); // splice(startIndex, noOfEle),
+// // returns spliced array
+// //
+// console.log(array, newArr); //[{..},3,4] [1,2]
 
 // --------slice--------------------------
 
-// array=[1,2,3,4]
-// console.log(array.slice(0,3), array);//slice returns new array slice(startIndex, delimiter)
-// array2 = [6,7,8,9]
-// console.log(array2.slice(-1,0));
-// console.log(array2.slice(0,-1));//always put start indedx as greater left to right ascending
+// array = [1, 2, 3, 4];
+// console.log(array.slice(0, 3), array); //slice returns new array slice(startIndex, delimiter)
+// array2 = [6, 7, 8, 9];
+// console.log(array2.slice(-1, 0));
+// console.log(array2.slice(0, -1)); //always put start indedx as greater left to right ascending
 // ----------concat-------------------
-// let arr = [1,2];
+// let arr = [1, 2];
 // let arraylike = {
-//     0:"something",
-//     1:"else",
-//     [Symbol.isConcatSpreadable]:true,
-//     length:2
-
+//   0: "something",
+//   1: "else",
+//   [Symbol.isConcatSpreadable]: true,
+//   length: 2,
 // };
 
 // console.log(arraylike);
 // // alert(arr.concat(arraylike));
 // //console.log(newarr);
 
-// let obj = {[[]]:"dance"}
+// let obj = { [[]]: "dance" };
 // console.log(obj);
 // ------------------------foreach---------------
 
@@ -44,8 +45,8 @@
 // arr.reverse();
 // console.log(arr);
 // ----------------------------------------
-// for(const n of arr){
-//     console.log(n);
+// for (const n of arr) {
+//   console.log(n);
 // }
 
 // const iter = arr[Symbol.iterator]();
@@ -57,36 +58,33 @@
 // console.log(iter.next());
 // console.log(iter.next());
 
+// function squared(max) {
+//   return {
+//     [Symbol.iterator]() {
+//       let n = 0;
 
-// function squared(max){
-    
-//   return{
-//     [Symbol.iterator](){
-//         let n=0;
-    
-//         return {
-//             next(){
-//                 n++;
-//                 if(n<=max){
-//                     return{
-//                         value:n*n,
-//                         done:false
-//                     }
-//                 }
-//                 return {
-//                     value:undefined,
-//                     done:true
-//                 }
-//             }
-//         }
-//     }
+//       return {
+//         next() {
+//           n++;
+//           if (n <= max) {
+//             return {
+//               value: n * n,
+//               done: false,
+//             };
+//           }
+//           return {
+//             value: undefined,
+//             done: true,
+//           };
+//         },
+//       };
+//     },
+//   };
 // }
-   
-// } 
 
 // const iter2 = squared();
-// for(let i of squared(10)){
-//     console.log(i);
+// for (let i of squared(10)) {
+//   console.log(i);
 // }
 // --------------------------------------
 
@@ -100,7 +98,7 @@
 
 //   const obj = Object.fromEntries(
 //     Object.entries(prices).map( item => (
-//         [item[0], item[1]*2]      
+//         [item[0], item[1]*2]
 //       ))
 //   )
 
@@ -116,7 +114,6 @@
 //     sum+=sal;
 //   }
 
-  
 //   console.log(sum);
 // -----------------------array destructuring-------------------------
 //   let [firstName, surname] = ["John","Smith", "alan", 'redav'];
@@ -142,6 +139,6 @@
 // ({Name} = {Name:"vivek"})
 // --------------------------------------------
 
-console.log(typeof([]));
-console.log(typeof([]+[]));
-console.log(1+"2");
+// console.log(typeof []);
+// console.log(typeof ([] + []));
+// console.log(1 + "2");
