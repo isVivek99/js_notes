@@ -43,3 +43,5 @@ function flattenObj(obj) {
 }
 
 console.log(flattenObj(obj));
+
+// {a: undefined, b: { c: { d: undefined, e: ['BFE.dev', undefined]} }} spec  , (diff is too big, full diff )
