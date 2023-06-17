@@ -1,0 +1,36 @@
+/* eg.1 */
+/* .child{
+    font-family: sans-serif;
+    margin: 0 auto;
+    width: 200px;
+} */
+/* --------------------- */
+
+/* .child{
+    font-family: sans-serif;
+}
+
+.parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+/* -------------------------- */
+
+/* .child{
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+.parent{
+    text-align: center;
+} */
+/* --------------------------- */
+
+.child{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
