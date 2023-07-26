@@ -17,7 +17,6 @@
 
 // obj.sayHi();  // {name: "kisha", hobby: "reading", sayHi: ƒ}
 
-
 // const user = {
 //     firstName:"vivek",
 //     lastName:"lokhande",
@@ -32,37 +31,35 @@
 
 // console.log(binder());
 //---------------------------------------------------
-// class Flash {
+class Flash {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.state = function () {
+      console.log("in state");
+    };
+  }
 
-//     constructor(x,y){
-//         this.x=x;
-//         this.y=y;
-//         this.state = function(){
-//             console.log("in state");
-//         }
-//     }
+  run() {
+    console.log("in-run---------");
+    console.log("this:", this);
+    console.log(this.x + this.y);
+    this.state();
+    console.log("--------");
+  }
 
-//     run (){
-//         console.log("in-run---------");
-//         console.log("this:",this);
-//         console.log(this.x + this.y); 
-//         this.state();   
-//         console.log("--------");
-//     }
+  render() {
+    return {
+      func: this.run,
+    };
+  }
+}
 
-//     render(){
-//         return{
-//             func:this.run,
-//         }
-//     }
+var obj = new Flash(5, 6);
 
-// }
-
-// var obj = new Flash(5,6);
-
-// obj.run();
-// var element = obj.render();
-// element.func();
+obj.run();
+var element = obj.render();
+element.func();
 
 // --------------------------------------------------------
 // function Flash(x,y){
@@ -107,9 +104,8 @@
 
 //     handleClick() {
 //         console.log("in handle");
-//         this.setState();    
+//         this.setState();
 //     }
-
 
 //     render() {
 //         return{
@@ -146,5 +142,12 @@
 //------------------------------------------------
 
 //console.log(JSON.parse('{ "name":"John", "age":20, "city":"New York"}'));
+// -----------
 
+// Omitting parentheses
+// By the way, we can omit parentheses after new:
 
+// let user = new User; // <-- no parentheses
+// same as
+// let user = new User();
+// Omitting parentheses here is not considered a “good style”, but the syntax is permitted by specification.

@@ -87,7 +87,7 @@
 //   console.log(string);
 // }
 
-//closures advantages, used in function currying, enacpsulation
+//closures advantages, used in function currying, enacpsulation, once, memoization
 //closre disadvantage, increases mmemory uses, since we are using references
 
 var x = 10;
@@ -107,10 +107,10 @@ function foo(a) {
 }
 
 var moar = foo(5); // Closure
-/* 
-  The function below executes the function bar which was returned 
-  when we executed the function foo in the line above. The function bar 
-  invokes boop, at which point bar gets suspended and boop gets push 
+/*
+  The function below executes the function bar which was returned
+  when we executed the function foo in the line above. The function bar
+  invokes boop, at which point bar gets suspended and boop gets push
   onto the top of the call stack (see the screenshot below)
 */
 console.log(moar(15));

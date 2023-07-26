@@ -1,10 +1,10 @@
 // -------------------------forEach--------------------
 
 // const arr = [1, 2, 3];
-// // arr.forEach((item, i) => {
-// //   arr[i] = item * 2;
-// // });
-// // console.log(arr);
+// arr.forEach((item, i) => {
+//   arr[i] = item * 2;
+// });
+// console.log(arr);
 
 // Array.prototype.myForEach = function (callback) {
 //   for (let index = 0; index < this.length; index++) {
@@ -18,7 +18,7 @@
 // console.log(arr);
 // ------------------------map--------------------
 
-arr = [1, 2, 3];
+// arr = [1, 2, 3];
 
 // let newArr = arr.map((item, index) => [item * 10, index]);
 // console.log(newArr);
@@ -26,6 +26,7 @@ arr = [1, 2, 3];
 // Array.prototype.myMap = function (callback) {
 //   let arr = [];
 //   for (let i = 0; i < this.length; i++) {
+
 //     arr[i] = callback(this[i], i);
 //   }
 //   return arr;
@@ -38,7 +39,7 @@ arr = [1, 2, 3];
 // // ------------------------------------every--
 
 // let arr1 = [15, 22, 36, 21];
-// let check = arr.every((age) => age > 18);
+// let check = arr1.every((age) => age > 18);
 
 // console.log(check);
 
@@ -48,6 +49,12 @@ arr = [1, 2, 3];
 //     result = callback(this[i]);
 //   }
 //   return result;
+// };
+// Array.prototype.myEvery = function (callback) {
+//   for (let index = 0; index < this.length; index++) {
+//     if (!callback(this[index])) return false;
+//   }
+//   return true;
 // };
 
 // let myCheck = arr.myEvery((age) => age > 18);
@@ -101,15 +108,15 @@ arr = [1, 2, 3];
 
 arr = [2, 4, 3, 4, 6, 6, 4];
 
-let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
-console.log(sum);
+// let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
+// console.log(sum);
 
 Array.prototype.myReduce = function (callback, initialValue) {
-  let res = initialValue;
+  let acc = initialValue;
   for (let index = 0; index < this.length; index++) {
-    res = callback(res, this[index]);
+    acc = callback(acc, this[index]);
   }
-  return res;
+  return acc;
 };
 
 let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);

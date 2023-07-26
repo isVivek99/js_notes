@@ -1,21 +1,25 @@
-// class Rabbit {
-//   constructor(type) {
-//     this.type = type;
-//     this.speak = function () {
-//       console.log(`${this.type} rabbit wants a carrot`);
-//     };
-//   }
+class Rabbit {
+  constructor(type) {
+    this.type = type;
+    this.speak = function () {
+      console.log(`${this.type} rabbit wants a carrot`);
+    };
+  }
+}
 
 //   code() {
 //     console.log("in code");
 //   }
 // }
-// Rabbit.prototype.teeth = "small";
+
+console.dir(Rabbit);
+
+Function.prototype.teeth = "small";
 // console.dir(Rabbit);
-// wierdRabbit = new Rabbit("wierd");
-// wierdRabbit.teeth = "sharp";
-// wierdRabbit.speak();
-// console.log(wierdRabbit);
+wierdRabbit = new Rabbit("wierd");
+wierdRabbit.teeth = "sharp";
+wierdRabbit.speak();
+console.log(wierdRabbit);
 // console.dir(Object.getPrototypeOf(Rabbit));
 // console.dir(Function.prototype);
 // console.log(Object.getPrototypeOf(Rabbit) === Function.prototype);
@@ -125,3 +129,14 @@
 
 // let wierdRabbit = new Rabbit("dancer");
 // console.dir(Rabbit);
+// -------------------------------
+// let protoRabbit = {
+//   speak(line) {
+//     `rabbit says line ${line}`;
+//   },
+// };
+
+// let killerRabbit = Object.create(protoRabbit);
+// console.log(protoRabbit, killerRabbit);
+// // ------------------------------
+// console.log([]);

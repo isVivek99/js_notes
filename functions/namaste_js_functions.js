@@ -1,31 +1,34 @@
 //function statement
-// function a(){
-//     var x=10;
-//     console.log(x);
+// function a() {
+//   var x = 10;
+//   console.log(x);
 // }
+// a();
 // ---------------------------------------
 
-// function b(){
-//     var x=100;
-//     c();
-//     function c (){
-//         console.log("in C");
-//     }
-//     console.log(x);
+// function b() {
+//   var x = 100;
+//   c();
+//   function c() {
+//     console.log("in C");
+//   }
+//   console.log(x);
 // }
 // b();
 
 // --------------------------------
 
 //function expression
-// var  a = function(){
-//     console.log("function expression");
-// }
+// var a = function () {
+//   console.log("function expression");
+// };
 
-// //named function expression
-// var b = function xyz(){
-//     console.log(xyz);
-// }
+// b();//error
+
+//named function expression
+// var b = function xyz() {
+//   console.log("xyz");
+// };
 
 // a();
 // b();
@@ -34,25 +37,26 @@
 // -------------------------------------
 
 // function bar() {
-//     foo = 10;
-//     return foo;
-//     function foo() {}
-//   }
-//   console.log(typeof bar());
+//   console.log({ foo });
+//   foo = 10;
+//   return foo;
+//   function foo() {}
+// }
+// console.log(typeof bar());
 
 // // -------------------------------------------
 
 // function testHack() {
-//     var test = [];
-//     for (var z = 0; z < 5; z++) {
-//       test[z] = function foo() {
-//         return z;
-//       };
-//     }
-//     return test;
+//   var test = [];
+//   for (var z = 0; z < 5; z++) {
+//     test[z] = function foo() {
+//       return z;
+//     };
 //   }
-//   var testArray = testHack();
-//   console.log(testArray[4]());
+//   return test;
+// }
+// var testArray = testHack();
+// console.log(testArray[4]());
 
 // --------------------------------------------
 
@@ -65,41 +69,48 @@
 // console.log(typeof bar());
 // --------------------------------
 
-// function Person(name){
+// function Person(name) {
 //   this.name = name;
 
-//    Person.prototype.speak = () =>{
-//      console.log(`my name is: ${this.name}`);
-//    }
-//    Person.prototype.speaker = function (){
+//   Person.prototype.speak = () => {
 //     console.log(`my name is: ${this.name}`);
-//   }
-
+//   };
+//   Person.prototype.speaker = function () {
+//     console.log(`my name is: ${this.name}`);
+//   };
 // }
 
 // console.dir(Person);
 // let vivek = new Person("vivek");
+// var vishesh = new Person("vishesh");
 // vivek.speak();
 // vivek.speaker();
 // // -----------------------------------
 
 // obj = {
-//   name:"vivek",
-//   speak: ()=>{
-//     console.log(`my name is: ${this.name,this}`);
-//   }
-// }
-// obj.speak();
+//   name: "vivek",
+//   speak: () => {
+//     console.log(`my name is: ${(this.name, this)}`);
+//   },
+//   speaks: function () {
+//     console.log(`my name is: ${(this.name, this)}`);
+//   },
+// };
+// obj.speaks();
 // ------------------------
 // function foo() {
+//   //implicit global variable in JS
+//   //here 'a' inside a function does not have a declaration
+//   //js defines these variables on the window object
 //   let a = (b = 0);
+//   console.log({ a: a });
 //   a++;
 //   return a;
 // }
 
 // foo();
-// console.log(typeof a);
-// console.log(typeof b);
+// console.log(typeof a); //undefined
+// console.log(typeof b); //number
 // ------------------------------
 // var myObject = {
 //   foo: "bar",
@@ -131,22 +142,22 @@
 //   })(456);
 // })(123);
 // -------------------------------
-// var length = 10;
+var length = 10;
 
-// function fn() {
-//   console.log(this.length);
-// }
+function fn() {
+  console.log(this.length);
+}
 
-// var myObj = {
-//   length: 5,
-//   method: function (fn) {
-//     fn();
-//     console.log(arguments);
-//     arguments[0]();
-//   },
-// };
+var myObj = {
+  length: 5,
+  method: function (fn) {
+    fn();
+    console.log(arguments);
+    arguments[0]();
+  },
+};
 
-// myObj.method(fn, 1);
+myObj.method(fn, 1);
 // -------------------------------
 
 // --------------------------------
@@ -223,20 +234,31 @@
 // console.log(gen.next());
 // ------------------normal func vs anonymous func----------------------
 
-let fun = function(){
-  console.log("anonymius bthc");
-}
-function gun(){
-  console.log("not anonymius bthc");
-}
-fun();
-console.log(fun.prototype.constructor);
-console.log(gun.prototype.constructor);
-// ----------------------------------------------
-var host = document.querySelector("#host");
+// let fun = function(){
+//   console.log("anonymius bthc");
+// }
+// function gun(){
+//   console.log("not anonymius bthc");
+// }
+// fun();
+// console.log(fun.prototype.constructor);
+// console.log(gun.prototype.constructor);
+// // ----------------------------------------------
+// var host = document.querySelector("#host");
 
-var root = host.attachShadow({mode: 'open'});
-var div = document.createElement('div');
-div.textContent = "THis is shadow dom";
-root.appendChild(div);
-console.dir(root);
+// var root = host.attachShadow({mode: 'open'});
+// var div = document.createElement('div');
+// div.textContent = "THis is shadow dom";
+// root.appendChild(div);
+// console.dir(root);
+
+/*
+android
+  \_ gradle
+    \_gradle_child
+    |_file.js  
+  |_ mocks
+    \_mocks_child
+    \_file.js
+
+  */

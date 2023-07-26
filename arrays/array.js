@@ -17,7 +17,7 @@
 // let arraylike = {
 //   0: "something",
 //   1: "else",
-//   [Symbol.isConcatSpreadable]: true,
+//   [.isConcatSpreadable]: true,
 //   length: 2,
 // };
 

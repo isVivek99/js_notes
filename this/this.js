@@ -12,11 +12,15 @@
 //   };
 // }
 // const user = makeUser();
-// console.log(user.ref.name, user.ref2().name);
+// console.log("this:", user.ref);
+// console.log(user.ref2().name);
+// const fn = user.ref2;
+
 // ------------------
 // let user = {
 //   name: "vivek",
 //   getDetails() {
+//     console.log(this.name);
 //     function getName() {
 //       console.log(this, this.name); // refers to wihndow object
 //     }
@@ -56,6 +60,12 @@
 // func(); //window obj , undefined
 // // ------------------------------------------
 
+/*
+why printName does not resolve to the inside object variable is
+ because arrow functions (() => {}) do not bind their own this value. 
+ Instead, they inherit the this value from their surrounding context, which, 
+in this case, is the global scope or the nearest enclosing non-arrow function.
+*/
 // let namea = "vivek";
 // var name = "lokhande";
 // let john = {
@@ -65,9 +75,13 @@
 //   printName: () => {
 //     console.log("hi " + this.name);
 //   },
+//   printName2() {
+//     console.log("hi " + this.name);
+//   },
 // };
 
 // john.printName();
+// john.printName2();
 
 // function fun() {
 //   console.log("asd");
@@ -94,37 +108,49 @@
 // console.log(printName());
 // const { getName } = cat;
 // console.log(getName());
+// console.log(cat.getaName());
 // // ---------------------------------
 
-// // const object = {
-// //     message: 'Hello, World!',
-// //     fun:function() {
-// //         console.log(this.message); // What is logged?
-// //     }
-// // };
+// const object = {
+//   message: "Hello, World!",
+//   fun: function () {
+//     console.log(this.message); // What is logged?
+//   },
+// };
 
-// // function logMessage() {
-// //     console.log(this.message); // What is logged?
-// // }
+// function logMessage() {
+//   console.log(this.message); // What is logged?
+// }
 
-// // const boundLogMessage = logMessage.bind(object);
-// // setTimeout(object.fun, 1000);//undefined
-// // setTimeout(boundLogMessage,2000);
+// const boundLogMessage = logMessage.bind(object);
+// console.log({ object: object });
+// console.dir(boundLogMessage);
+// setTimeout(object.fun, 1000); //undefined
+// setTimeout(boundLogMessage, 2000);
 // // ---------------------------------------------
-// // var length = 4;
-// // function callback() {
-// //   console.log(this.length); // What is logged?
-// // }
+// var length = 4;
+// function callback() {
+//   console.log(this, this.length); // What is logged?
+// }
 
-// // const object = {
-// //   length: 5,
-// //   method() {
-// //     console.log(arguments);
-// //     arguments[0]();
-// //   },
-// // };
+// const object = {
+//   length: 5,
+//   method() {
+//     console.log(arguments, this);
+//     //arguments is an array of elements, i.e. an object
+//     /*
+//     {
+//       0:callback(),
+//       1:1,
+//       2:2
+//     }
+//     hence when we call the callback method it returns the length of the object array
+//     */
+//     arguments[0]();
+//   },
+// };
 
-// // object.method(callback, 1, 2);
+// object.method(callback, 1, 2);
 
 // // ------------------------------
 
@@ -147,20 +173,33 @@
 //   },
 // };
 
+// const calc1 = {
+//   total: 0,
+//   add(param) {
+//     this.total += param;
+//     return this;
+//   },
+//   mult(param) {
+//     this.total *= param;
+//     return this;
+//   },
+// };
+
 // const result = calc.add(10).mul(5).sub(30);
-// console.log(result.total);
+// const result2 = calc1.add(10);
+// console.log(result.total, result2.total);
 // // ----------------------
 
-const user = {
-  name: "vivek",
-  logMessage() {
-    console.log(this.name);
-  },
-};
+// const user = {
+//   name: "vivek",
+//   logMessage() {
+//     console.log(this.name);
+//   },
+// };
 
-setTimeout(user.logMessage, 1000); //op: undefined since we have passed this fn as a callback
-// and the context is not preserved
+// setTimeout(user.logMessage, 1000); //op: undefined since we have passed this fn as a callback
+// // and the context is not preserved
 
-setTimeout(() => {
-  user.logMessage();
-}, 1000); //op: vivek; since we have passed this fn in a callback and the context is preserved
+// setTimeout(() => {
+//   user.logMessage();
+// }, 1000); //op: vivek; since we have passed this fn in a callback and the context is preserved

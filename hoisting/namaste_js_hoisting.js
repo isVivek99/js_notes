@@ -25,7 +25,7 @@
 // functionHoisting();
 // console.log(test);
 // -------------------------------------
-// alert(a());
+alert(a());
 // function a() {
 //   function b() {
 //     return 3;

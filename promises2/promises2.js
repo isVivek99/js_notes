@@ -32,29 +32,29 @@
 //     })
 // ----------------------------------------------
 // callback hell
-// function one(callback) {
-//   console.log("call func1");
-//   callback();
-// }
-// function two(callback) {
-//   setTimeout(() => {
-//     console.log("call func2");
-//     callback();
-//   }, 1000);
-// }
+function one(callback) {
+  console.log("call func1");
+  callback();
+}
+function two(callback) {
+  setTimeout(() => {
+    console.log("call func2");
+    callback();
+  }, 1000);
+}
 
-// function three() {
-//   console.log("call func3");
-// }
+function three() {
+  console.log("call func3");
+}
 
-// one(function () {
-//   two(function () {
-//     three();
-//   });
-// });
+one(function () {
+  two(function () {
+    three();
+  });
+});
 
 // ----------------------------------------------
-
+//https://stackoverflow.com/questions/53482567/why-is-finally-executed-before-promises-then
 // new Promise((resolve, reject) => {
 //   setTimeout(() => resolve("result dasd"), 2000);
 // })
@@ -67,7 +67,7 @@
 //   setTimeout(() => resolve(2), 1000);
 // });
 
-// promise.then((data) => console.log(data));
+// promise.then((data) => console.log(data)); //1
 // -----------------------------------------------
 
 // function delay(ms) {
@@ -80,7 +80,7 @@
 
 // delay(3000)
 //   .then((data) => alert(`runs ${data}`))
-//   .catch((err) => console.log(err));
+//   .catch((err) => console.log({ err }));
 // ------------------------------------------------
 
 // new Promise((resolve, reject) => {
@@ -89,6 +89,8 @@
 
 // let p1 = new Promise(function (resolve, reject) {
 //   setTimeout(() => {
+//     //error cannot be caught because it is thrown inside
+//     //settimeout, we need to catch inside the function
 //     throw new Error("Whoops!");
 //   }, 1000);
 // });
@@ -106,7 +108,9 @@
 // }).catch((err) => console.log(err));
 // ----------------------------------------------
 
-// new Promise((resolve) => setTimeout(() => console.log(resolve(1)), 3000)),
+// new Promise((resolve) => setTimeout(() => console.log(resolve(1)), 3000))
+//
+// );
 // ----------------------------------------------
 // Promise.all([
 //   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
@@ -135,19 +139,22 @@
 // pr.then(console.log);
 // //--------------------------------------------
 // Promise.allSettled([
-//         new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
-//         new Promise(reject => setTimeout(() => reject("rejected"), 2000)), // 2
-//         new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-//       ]).then(res=>{
-//         //   console.log(res);
-//           res.forEach(item=>console.log(item));
-//   })
+//   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
+//   new Promise((reject) => setTimeout(() => reject("rejected"), 2000)), // 2
+//   new Promise((resolve) => setTimeout(() => resolve(3), 1000)), // 3
+// ]).then((res) => {
+//   //   console.log(res);
+//   res.forEach((item) => console.log(item));
+// });
 // ---------------------
+//resolves when first promis resolve/rejects
 // Promise.race([
-//     new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)),
-//     new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
-//     new Promise((resolve, reject) => setTimeout(() => resolve(3), 4000))
-//   ]).catch(alert); // 1
+//   new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)),
+//   new Promise((resolve, reject) =>
+//     setTimeout(() => reject(new Error("Whoops!")), 2000)
+//   ),
+//   new Promise((resolve, reject) => setTimeout(() => resolve(3), 4000)),
+// ]).catch(console.log); // 1
 //   ---------------------------------
 // let p1 = Promise.any([
 //     new Promise((resolve, reject) => setTimeout(() => reject(1), 2000)),
@@ -160,24 +167,24 @@
 
 // -------------Promisification--------------------
 
-// function getFruits(callback) {
-//   let fruits = ["apple", "grapes", "banana"];
-//   setTimeout(() => callback(fruits), 1000);
-// }
+function getFruits(callback) {
+  let fruits = ["apple", "grapes", "banana"];
+  setTimeout(() => callback(fruits), 1000);
+}
 
-// function promisify(func) {
-//   return function (...args) {
-//     return new Promise((resolve, reject) => {
-//       try {
-//         func(resolve);
-//       } catch (e) {
-//         reject(e);
-//       }
-//     });
-//   };
-// }
+function promisify(func) {
+  return function (...args) {
+    return new Promise((resolve, reject) => {
+      try {
+        func(resolve);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+}
 
-// const promisified = promisify(getFruits);
+const promisified = promisify(getFruits);
 // promisified().then(console.log).catch(console.log);
 // --------------------promisfy-------------------
 
@@ -245,22 +252,22 @@
 //   console.log(showAvatar());
 // //   -------------------------------------------------
 // class Thenable {
-//     constructor(num) {
-//       this.num = num;
-//     }
-//     then(resolve, reject) {
-//       // resolve with this.num*2 after 1000ms
-//       setTimeout(() => resolve(this.num * 2), 1000); // (*)
-//     }
+//   constructor(num) {
+//     this.num = num;
 //   }
-
-//   async function f() {
-//     // waits for 1 second, then result becomes 2
-//     let result = await new Thenable(1);
-//     console.log(result);
+//   then(resolve, reject) {
+//     // resolve with this.num*2 after 1000ms
+//     setTimeout(() => resolve(this.num * 2), 1000); // (*)
 //   }
+// }
 
-//   f();
+// async function f() {
+//   // waits for 1 second, then result becomes 2
+//   let result = await new Thenable(1);
+//   console.log(result);
+// }
+
+// f();
 // // ========================
 //   async function loadJson(url){
 //       try{
@@ -320,24 +327,24 @@
 //   demoGithubUser();
 
 // ----------------------------------------------
-// const numberSeries = function (i, time) {
-//   return new Promise(function (resolve) {
-//     setTimeout(function () {
-//       console.log(i);
-//       resolve(i);
-//     }, time);
-//   });
-// };
+const numberSeries = function (i, time) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      console.log(i);
+      resolve(i);
+    }, time);
+  });
+};
 
-// let queue = Promise.resolve();
+let queue = Promise.resolve();
 
-// for (let i = 0; i <= 1; i++) {
-//   queue = queue.then(function () {
-//     console.log(queue);
-//     return numberSeries(i, Math.floor(Math.random() * 6000));
-//   });
-//   console.log(queue);
-// }
+for (let i = 0; i <= 1; i++) {
+  queue = queue.then(function () {
+    console.log(queue);
+    return numberSeries(i, Math.floor(Math.random() * 6000));
+  });
+  console.log(queue);
+}
 // -------------------------------------------
 
 // Promise.resolve('Success!')
@@ -412,8 +419,8 @@ function newPromiseAll(promises) {
 // Promise.all(promises)
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
-const response = newPromiseAll(promises);
-response.then((res) => console.log(res)).catch((err) => console.log(err));
+// const response = newPromiseAll(promises);
+// response.then((res) => console.log(res)).catch((err) => console.log(err));
 
 // const response2 = newPromiseAllSettled(promises);
 // response2.then((res) => console.log(res));

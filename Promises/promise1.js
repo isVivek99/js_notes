@@ -3,15 +3,17 @@
 // });
 // console.log(myPromise);
 // console.log(typeof myPromise);
-// myPromise.then((data) => console.log(data)).catch((err) => console.log(err));
+// myPromise
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log("err:", err));
 
 // ------------------------------------------------------
-// let stocks = {
-//   Fruits: ["strawberry", "grapes", "banana", "apple"],
-//   liquid: ["water", "ice"],
-//   holder: ["cone", "cup", "stick"],
-//   toppings: ["chocolate", "peanuts"],
-// };
+let stocks = {
+  Fruits: ["strawberry", "grapes", "banana", "apple"],
+  liquid: ["water", "ice"],
+  holder: ["cone", "cup", "stick"],
+  toppings: ["chocolate", "peanuts"],
+};
 
 // let order = (Fruit_name, call_production) => {
 //   setTimeout(() => {
@@ -26,65 +28,62 @@
 //     setTimeout(() => {
 //       console.log("fruit has been chopped");
 //     }, 2000);
-//   }, 0000);
+//   }, 0);
 // };
 
 // order(0, production);
 //  above is a example of callback hell , if we want to run async functions
 // now to demonstrate promise chaining
 // -----------------------------------------------------------------------
-// const isShopOpen = true;
+const isShopOpen = true;
 
-// const order = (time, work)=>{
+// const order = (time, work) => {
+//   return new Promise((resolve, reject) => {
+//     if (isShopOpen) {
+//       setTimeout(() => {
+//         resolve(work());
+//       }, time);
+//     } else {
+//       reject(console.log("shop closed!"));
+//     }
+//   });
+// };
 
-//     return new Promise((resolve,reject)=>{
-//         if(isShopOpen){
-//             setTimeout(()=>{
-//                 resolve(work())
-//             },time)
-
-//         }else{
-//             reject(console.log("shop closed!"));
-//         }
-//     })
-// }
-
-// order(2000, ()=>console.log(`${stocks.Fruits[0]} was selected!`))
-//     .then(()=>{
-//         return order(0000, ()=>console.log("production started!"))
-//     })
-//     .then(()=>{
-//         return order(2000, ()=>console.log("fruit was chopped!"))
-//     })
-//     .then(()=>{
-//         return order(1000,()=>console.log("ice-cream was served!"))
-//     })
-//     .catch(()=>console.log("customer left"))
-//     .finally(()=>{
-//         console.log("shop is closed now bbye!");
-//     })
+// order(2000, () => console.log(`${stocks.Fruits[0]} was selected!`))
+//   .then(() => {
+//     return order(0000, () => console.log("production started!"));
+//   })
+//   .then(() => {
+//     return order(2000, () => console.log("fruit was chopped!"));
+//   })
+//   .then(() => {
+//     return order(1000, () => console.log("ice-cream was served!"));
+//   })
+//   .catch(() => console.log("customer left"))
+//   .finally(() => {
+//     console.log("shop is closed now bbye!");
+// });
 // ------------------------------------------------------------------------------
 
 // let toppingChoice = () => {
-//     return new Promise((resolve, reject)=>{
-//         if(isShopOpen){
-//             setTimeout(()=>{
-//                 resolve(console.log("whuch topping u want?"));
-//             },2000)
-//         }else{
-//             reject("customer left!")
-//         }
+//   return new Promise((resolve, reject) => {
+//     if (isShopOpen) {
+//       setTimeout(() => {
+//         resolve(console.log("whuch topping u want?"));
+//       }, 2000);
+//     } else {
+//       reject("customer left!");
+//     }
+//   });
+// };
 
-//     })
-// }
-
-// async function kitchen(){
-//     console.log("A");
-//     console.log("B");
-//     console.log("C");
-//     await toppingChoice();
-//     console.log("D");
-//     console.log("E");
+// async function kitchen() {
+//   console.log("A");
+//   console.log("B");
+//   console.log("C");
+//   await toppingChoice();
+//   console.log("D");
+//   console.log("E");
 // }
 // kitchen();
 // console.log("dishes");
@@ -92,175 +91,172 @@
 
 // --------------------------------------------------------
 
-function first(callback) {
-  console.log("in first");
-  callback();
-}
-function second(callback) {
-  setTimeout(() => {
-    console.log("in second");
-    callback();
-  }, 2000);
-}
-function third() {
-  console.log("in third");
-}
+// function first(callback) {
+//   console.log("in first");
+//   callback();
+// }
+// function second(callback) {
+//   setTimeout(() => {
+//     console.log("in second");
+//     callback();
+//   }, 2000);
+// }
+// function third() {
+//   console.log("in third");
+// }
 
-first(function () {
-  second(function () {
-    third();
-  });
-});
+// first(function () {
+//   second(function () {
+//     third();
+//   });
+// });
+
 // ==============================
 
-function first() {
-  return new Promise((resolve, reject) => {
-    resolve("resolved func one");
-  });
-}
+// function first() {
+//   return new Promise((resolve, reject) => {
+//     resolve("resolved func one");
+//   });
+// }
 
-function second() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve("resolved func 2"), 2000);
-  });
-}
+// function second() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("resolved func 2"), 2000);
+//   });
+// }
 
-function third() {
-  console.log("third");
-}
+// function third() {
+//   console.log("third");
+// }
 
-first()
-  .then((res) => {
-    console.log(res);
-    return second();
-  })
-  .then((res2) => {
-    console.log(res2);
-    third();
-  })
-  .catch((err) => console.log(err));
+// first()
+//   .then((res) => {
+//     console.log(res);
+//     return second();
+//   })
+//   .then((res2) => {
+//     console.log(res2);
+//     third();
+//   })
+//   .catch((err) => console.log(err));
 
-Promise.all([
-  first().then((res) => console.log(res)),
-  second().then((res) => console.log(res)),
-  third(),
-]);
+// Promise.all([
+//   first().then((res) => console.log(res)),
+//   second().then((res) => console.log(res)),
+//   third(),
+// ]);
 
 // ------------------------------------------------------------------
 
-// function first(){
-//     console.log("in first");
+// function first() {
+//   console.log("in first");
 // }
 
-// async function second(){
-//     await setTimeout(()=>{
-//         console.log("in second");
-//     },2000)
-
+// async function second() {
+//   //returns id not promise
+//   await setTimeout(() => {
+//     console.log("in second");
+//   }, 2000);
 // }
-// function third(){
-//     console.log("in third");
-
+// function third() {
+//   console.log("in third");
 // }
 
-// async function main(){
-//     first();
-//     await second();
-//     third();
+// async function main() {
+//   first();
+//   await second();
+//   third();
 // }
 // console.log(main);
 // main();
 
 // ----------------------------------------------------------------------
-// const calculate = (a,b,c) => {
+// const calculate = (a, b, c) => {
+//   return new Promise((resolve, reject) => {
+//     if (a < 0 || b < 0 || c < 0) reject("enter positive numbers");
+//     setTimeout(() => {
+//       resolve(a + b + c);
+//     }, 2000);
+//   });
+// };
 
-//     return new Promise((resolve, reject) => {
-
-//         if(a<0 || b<0 || c<0)
-//             reject("enter positive numbers");
-//         setTimeout(()=>{
-//             resolve(a+b+c)
-//         },2000)
-//     })
-// }
-
-// calculate(1,2,3)
-// .then((res)=>{
+// calculate(1, 2, 3)
+//   .then((res) => {
 //     console.log(res);
-//     return calculate(res,-4,5);
-// }).then((res)=>{
+//     return calculate(res, -4, 5);
+//   })
+//   .then((res) => {
 //     console.log(res);
-// })
-// .catch((err)=>{
+//   })
+//   .catch((err) => {
 //     console.log(err);
-// })
+//   });
 // -----------------------------------------------------------------------
-// let p1 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 500, 'p1asd');
+// let p1 = new Promise(function (resolve, reject) {
+//   setTimeout(resolve, 500, "p1asd");
+//   // setTimeout(() => resolve("asd"), 2000);
 // });
 
-// p1
-// .then((data)=>console.log(data))
+// p1.then((data) => console.log(data));
 // ------------------------------------------
-// let p1 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 500, 'p1');
-// });
+let p1 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 500, "p1");
+});
 
-// let p2 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 1000, 'p2');
-// });
+let p2 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 1000, "p2");
+});
 
-// let p3 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 1200, 'p3');
-// });
+let p3 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 1200, "p3");
+});
 
-// let p4 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 300, 'p4');
-// });
+let p4 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 300, "p4");
+});
 
-// let p5 = new Promise(function(resolve, reject) {
-//     setTimeout(resolve, 800, 'p5');
-// });
+let p5 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 800, "p5");
+});
 
-// let promise = Promise.all([p1, p2, p3, p4, p5]);
+let promise = Promise.all([p1, p2, p3, p4, p5]);
 
-// promise
+promise
+  .then(function (data) {
+    console.log(data);
+    data.forEach(function (data) {
+      console.log(data);
+    });
+  })
 
-// .then(function(data) {
-//     console.log(data);
-//     data.forEach(function(data) {
-//         console.log(data);
-//     });
-// })
-
-// .catch(function(error) {
-//     console.error('error', error);
-// });
+  .catch(function (error) {
+    console.error("error", error);
+  });
 
 // ------------------------------------------------------
 
-// async function run(){
-//     return new Promise((res, rej)=>{
-//     console.log("Hello roc8")
-//     setTimeout (res, 2000, "Hello World")
-//     console.log("Hello JS")
-//     })
-//     }
+async function run() {
+  return new Promise((res, rej) => {
+    console.log("Hello roc8");
+    setTimeout(res, 2000, "Hello World");
+    console.log("Hello JS");
+  });
+}
 
-//     async function print(){
-//         console.log("Printing")
-//         const r = await run();
-//         console.log(r)
-//         console.log(" Done")
-//     }
+async function print() {
+  console.log("Printing");
+  const r = await run();
+  console.log(r);
+  console.log(" Done");
+}
 
-//     print().then(res=>console.log(res))
-//     //printing
-//     //hello roc8
-//     //hello js
-//     //hello world
-//     //done
-//     //undef
+print().then((res) => console.log(res));
+//printing
+//hello roc8
+//hello js
+//hello world
+//done
+//undef
 // -------------------------------------------------
 
 // function job(num){

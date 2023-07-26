@@ -154,7 +154,7 @@
 //   console.log(longString);
 //   let temp="";
 //   for (let i = 0; i < longString.length; i++) {
-//     for (let j = longString.length - 1; j >= 0; j--) {  
+//     for (let j = longString.length - 1; j >= 0; j--) {
 //       if (
 //         longString.substring(i, j) ===
 //         longString.substring(i, j).split("").reverse().join("")
@@ -221,13 +221,13 @@
 //     string+=("\n");
 //     console.log(string);
 // }
-// * * * * * 
+// * * * * *
 
-// * * * * * 
+// * * * * *
 
-// * * * * * 
+// * * * * *
 
-// * * * * * 
+// * * * * *
 
 // * * * * *
 // -------------------------------------------------------
@@ -241,15 +241,15 @@
 //   string+="\n";
 //   console.log(string);
 // }
-// * 
+// *
 
-// * * 
+// * *
 
-// * * * 
+// * * *
 
-// * * * * 
+// * * * *
 
-// * * * * * 
+// * * * * *
 // ---------------------------------------------------------------
 
 // let n=5;
@@ -262,7 +262,7 @@
 //     string += "*";
 //   }
 //   string+="\n";
-  
+
 // }
 // console.log(string);
 
@@ -291,18 +291,18 @@
 // }
 // console.log(string);
 
-// * * * * * 
-//  * * * * 
-//   * * * 
-//    * * 
-//     * 
+// * * * * *
+//  * * * *
+//   * * *
+//    * *
+//     *
 // -------------------------------------------
 // let n = 5;
 // let string = "";
 
 // for(let i=1; i<=n; i++){
 //     for(let j=n; j>i; j--){
-//         string+=" "; 
+//         string+=" ";
 //     }
 //     for(let k=0; k<i*2-1; k++){
 //         string+="*";
@@ -331,7 +331,7 @@
 //     *
 
 // ---------------------------------------------
-// let n=5; 
+// let n=5;
 // let string="";
 
 // for(let i=0; i<n; i++){
@@ -353,3 +353,7 @@
 //     string+="\n";
 // }
 // console.log(string);
+
+//------
+console.log(0 ?? 21); // Output: 0
+console.log(null ?? 21); // Output: 21

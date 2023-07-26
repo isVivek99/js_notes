@@ -4,6 +4,10 @@
 //   let let_c = 30;
 // }
 // ----------------------------------------------------
+// var a = 100;
+// {
+//   a = 20;
+// }
 // function scope() {
 //   var a = 10;
 //   {
@@ -12,8 +16,9 @@
 //   }
 
 //   console.log(b);
-//   console.log(c);
+//   // console.log(c);
 // }
+// console.log({ a });
 // scope();
 
 // -------------------------------------------------------
@@ -43,6 +48,9 @@
 
 // function displayDouble() {
 //   //a new variable is defined with the same name as variable on line 1 - outer scope
+//   console.log(number); // -> undefined, since the let number
+//   //variable remains in the functions scope and
+//   //doesnt create a TDZ for itself
 //   var a = 10;
 //   let number = 3;
 
@@ -62,13 +70,13 @@
 // logValue();
 // ----------------------------------------------------------
 // function add() {}
-// var add;
+// var add; // if we assign a value to add, then it will be that type or else it will be fn type
 // var b;
 // console.log(typeof add);
 // ---------------------------------------------------------
 // var add = 10;
 // function add() {}
-// console.log(typeof add)
+// console.log(typeof add);
 // --------------------------------------------------------
 // console.log("1");
 // setTimeout(function () {
@@ -105,7 +113,6 @@
 //   welcome(); // \   (runs)
 //   //  |
 //   function welcome() {
-//     //  |
 //     console.log("Hello!"); //  |  Function Declaration is available
 //   } //  |  everywhere in the block where it's declared
 //   //  |
@@ -127,31 +134,30 @@
 
 // console.log(x);
 // ------------------------------------
-// var z=99;
+// var z = 99;
 
 // {
-
-// let z="Vikas";
-// console.log(z);
+//   let z = "Vikas";
+//   console.log(z);
 // }
 
 // console.log(z);
-/////
+//------------------------------
 
-// function baz(){
-//     console.log(this);
-//     }
+function baz() {
+  console.log(this);
+}
 
-//     baz();
-//     var obj={};
+// baz();
+// var obj = {};
 
-//     var x=baz.bind(obj);
-//     baz();
+// var x = baz.bind(obj);
+// baz();
 
-//     var obj2={
-//     myBaz:baz.bind(this),
-//     }
-//     obj2.myBaz();
+var obj2 = {
+  myBaz: baz.bind(this),
+};
+obj2.myBaz();
 
-//     var y = new baz();
+var y = new baz();
 // -----------------------
