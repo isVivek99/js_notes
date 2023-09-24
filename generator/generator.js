@@ -27,3 +27,18 @@ console.log(abcs().next());
 for (let letter of abcs()) {
   console.log(letter, letter.toUpperCase());
 }
+// ----------
+
+
+function* generatorId(){
+  let id=1;
+  while(true){
+    yield id;
+    console.log({id});
+    id++;
+  }
+}
+const gen = generatorId()
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());

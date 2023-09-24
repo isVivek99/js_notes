@@ -1,35 +1,39 @@
-// function loadScript(src, callback){
-
-//     let script =   document.createElement("script");
-//     script.src = src;
-//     console.log(script);
-//     script.onload = ()=>(callback(script));
-//     script.onerror = ()=>(callback(new Error(`Script load error for ${src}`)));
-//     document.head.append(script);
+// function loadScript(src, callback) {
+//   let script = document.createElement("script");
+//   script.src = src;
+//   console.log(script);
+//   script.onload = () => callback(script);
+//   script.onerror = () => callback(new Error(`Script load error for ${src}`));
+//   document.head.append(script);
 // }
 
-// loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js',
-//     (script,error)=>{
-//         console.log(`in calback,${script.src} is loaded!`)
-//         if(error){
-//             console.log(error);
-//         }else{
-//             loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js',(script)=>{
-//                 console.log(`in calback2,${script.src} is loaded!`);
+// loadScript(
+//   "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js",
+//   (script, error) => {
+//     console.log(`in calback,${script.src} is loaded!`);
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       loadScript(
+//         "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js",
+//         (script) => {
+//           console.log(`in calback2,${script.src} is loaded!`);
 
-//                 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js',
-//                 (script,error)=>{
-//                     if(error){
-//                         console.log("error");
-//                     }else{
-//                         console.log(`${script.src} script3 loaded`);
-//                     }
-//                 }
-//                 )
-//             })
+//           loadScript(
+//             "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js",
+//             (script, error) => {
+//               if (error) {
+//                 console.log("error");
+//               } else {
+//                 console.log(`${script.src} script3 loaded`);
+//               }
+//             }
+//           );
 //         }
-
-//     })
+//       );
+//     }
+//   }
+// );
 // ----------------------------------------------
 // callback hell
 // function one(callback) {
@@ -135,19 +139,23 @@
 // pr.then(console.log);
 // //--------------------------------------------
 // Promise.allSettled([
-//         new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
-//         new Promise(reject => setTimeout(() => reject("rejected"), 2000)), // 2
-//         new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-//       ]).then(res=>{
-//         //   console.log(res);
-//           res.forEach(item=>console.log(item));
-//   })
+//   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
+//   new Promise((reject) => setTimeout(() => reject("rejected"), 2000)), // 2
+//   new Promise((resolve) => setTimeout(() => resolve(3), 1000)), // 3
+// ]).then((res) => {
+//   console.log(res);
+//   res.forEach((item) => console.log(item));
+// });
 // ---------------------
 // Promise.race([
-//     new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)),
-//     new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
-//     new Promise((resolve, reject) => setTimeout(() => resolve(3), 4000))
-//   ]).catch(alert); // 1
+//   new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)),
+//   new Promise((resolve, reject) =>
+//     setTimeout(() => reject(new Error("Whoops!")), 2000)
+//   ),
+//   new Promise((resolve, reject) => setTimeout(() => resolve(3), 4000)),
+// ])
+//   .catch(alert) // 1
+//   .then(console.log);
 //   ---------------------------------
 // let p1 = Promise.any([
 //     new Promise((resolve, reject) => setTimeout(() => reject(1), 2000)),
@@ -165,6 +173,10 @@
 //   setTimeout(() => callback(fruits), 1000);
 // }
 
+// function getMeat(callback) {
+//   callback(["mutton", "beef"]);
+// }
+
 // function promisify(func) {
 //   return function (...args) {
 //     return new Promise((resolve, reject) => {
@@ -178,7 +190,8 @@
 // }
 
 // const promisified = promisify(getFruits);
-// promisified().then(console.log).catch(console.log);
+// const promisified2 = promisifyTwo(getMeat);
+// promisified2().then(console.log).catch(console.log);
 // --------------------promisfy-------------------
 
 // const getSumAsync = (num1, num2, callback) => {
@@ -376,28 +389,48 @@ const promises = [
   42,
 ];
 
-function newPromiseAll(promises) {
-  const results = [];
-  let completed = 0;
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < promises.length; i++) {
-      Promise.resolve(promises[i])
-        .then((res) => {
-          results[i] = res;
-          completed += 1;
-          if (completed === promises.length) resolve(results);
-        })
-        .catch((err) => reject(err));
-    }
-  });
-}
+// function newPromiseAll(promises) {
+//   const results = [];
+//   let completed = 0;
+//   return new Promise((resolve, reject) => {
+//     for (let i = 0; i < promises.length; i++) {
+//       Promise.resolve(promises[i])
+//         .then((res) => {
+//           results[i] = res;
+//           completed += 1;
+//           if (completed === promises.length) resolve(results);
+//         })
+//         .catch((err) => reject(err));
+//     }
+//   });
+// }
+
+//using for of loop because forEach does not handle async calls and does not wait promise resolution.
+// function myPromiseAll(promises) {
+//   const results = [];
+//   return new Promise(async (res, rej) => {
+//     for (const [index, promise] of promises.entries()) {
+//       try {
+//         const result = await Promise.resolve(promise);
+//         results[index] = result;
+//       } catch (error) {
+//         rej(error);
+//         return; // Stop the loop if an error occurs
+//       }
+
+//       if (results.length === promises.length) {
+//         res(results);
+//       }
+//     }
+//   });
+// }
 
 // function newPromiseAllSettled(promises) {
 //   const results = [];
 //   let promisesCompleted = 0;
 //   return new Promise((resolve, reject) => {
 //     for (let i = 0; i < promises.length; i++) {
-//       promises[i]
+//       Promise.resolve(promises[i])
 //         .then((res) => {
 //           results[i] = { status: "fullfilled", value: res };
 //         })
@@ -412,8 +445,9 @@ function newPromiseAll(promises) {
 // Promise.all(promises)
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
-const response = newPromiseAll(promises);
-response.then((res) => console.log(res)).catch((err) => console.log(err));
+// const response = myPromiseAll(promises)
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
 
-// const response2 = newPromiseAllSettled(promises);
-// response2.then((res) => console.log(res));
+const response2 = newPromiseAllSettled(promises);
+response2.then((res) => console.log(res));

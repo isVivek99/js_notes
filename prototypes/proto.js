@@ -11,9 +11,10 @@
 //   }
 // }
 // Rabbit.prototype.teeth = "small";
-// console.dir(Rabbit);
+// // console.dir(Rabbit);
 // wierdRabbit = new Rabbit("wierd");
-// wierdRabbit.teeth = "sharp";
+// console.log({ wierdRabbit }, wierdRabbit.teeth);
+// // wierdRabbit.teeth = "sharp";
 // wierdRabbit.speak();
 // console.log(wierdRabbit);
 // console.dir(Object.getPrototypeOf(Rabbit));
@@ -50,6 +51,7 @@
 
 // animal has methods
 // let animal = {
+//   isSleeping: false,
 //   walk() {
 //     if (!this.isSleeping) {
 //       console.log(`I walk`);
@@ -67,7 +69,7 @@
 
 // // modifies rabbit.isSleeping
 // rabbit.sleep();
-
+// //rabit.__proto__ is same as the [[prototype]] object inside the rabbit object
 // console.log(rabbit); // true
 // console.log(animal);
 // ---------------------------------------
@@ -83,9 +85,9 @@
 
 // console.log(Object.keys(rabbit));
 // console.log(rabbit);
-// for (let key in rabbit) {
-//   console.log(key);
-// }
+// // for (let key in rabbit) {
+// //   console.log(key);
+// // }
 // for (let key in rabbit) {
 //   console.log("key:", key);
 //   let isOwn = rabbit.hasOwnProperty(key);
@@ -94,23 +96,23 @@
 // ---------------prototype in function-------------
 
 // let animal = {
-//     eats: true
-//   };
+//   eats: true,
+// };
 
-//   function Rabbit(name) {
-//     this.name = name;
-//   }
-//   function bar(){}
+// function Rabbit(name) {
+//   this.name = name;
+// }
+// function bar() {}
 
-//   Rabbit.prototype = animal;
+// Rabbit.prototype = animal;
 
-//   let rabbit = new Rabbit("White Rabbit");
-//   console.dir(Rabbit);
-//   console.dir(bar);
-//   console.log(rabbit);
-//   console.log( rabbit.eats );
-//   console.log(Number.prototype);
-//   console.log(eval("{nam:1}"));
+// let rabbit = new Rabbit("White Rabbit");
+// console.dir(Rabbit);
+// console.dir(bar);
+// console.log(rabbit);
+// console.log(rabbit.eats);
+// console.log(Number.prototype);
+// console.log(eval("{nam:1}"));
 // ----------------------------------
 
 // class Rabbit {

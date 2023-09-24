@@ -1,6 +1,6 @@
 //--flatten array----
 
-// const arr = [1, [2, 3, [4, [5]]]];
+const arr = [1, [2, 3, [4, [5]]]];
 // const arr = [1, 2, [3, 4]];
 // console.log(arr.flat(1));
 
@@ -16,8 +16,22 @@
 //   return result;
 // }
 
+// function flatten(array, degree = 2) {
+//   const result = [];
+//   array.forEach((element) => {
+//     if (Array.isArray(element) && degree > 0) {
+//       console.log(...flatten(element, degree - 1));
+//       result.push(...flatten(element, degree - 1));
+//     } else {
+//       result.push(element);
+//     }
+//   });
+//   return result;
+// }
+
 // const res = flatten(arr, 2);
-// console.log(res);
+
+// console.log({ res });
 
 //--flatten object----
 
@@ -41,6 +55,18 @@ function flattenObj(obj) {
   });
   return result;
 }
+
+// const res = [];
+// function flattenObj(obj) {
+//   Object.keys(obj).forEach((key) => {
+//     if (typeof obj[key] === "object") {
+//       flattenObj(obj[key]);
+//     } else {
+//       res.push(obj[key]);
+//     }
+//   });
+//   return res;
+// }
 
 console.log(flattenObj(obj));
 

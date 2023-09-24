@@ -91,60 +91,73 @@
 // console.log("tables");
 
 // --------------------------------------------------------
+{
+  /*
+  Callback hell, or the "pyramid of doom," emerged as a consequence of JavaScript's asynchronous nature and the lack of built-in constructs for handling asynchronous operations in early versions of the language.
 
-function first(callback) {
-  console.log("in first");
-  callback();
-}
-function second(callback) {
-  setTimeout(() => {
-    console.log("in second");
-    callback();
-  }, 2000);
-}
-function third() {
-  console.log("in third");
+In the early days of JavaScript, many operations were synchronous, meaning they would block the execution of code until they were complete. However, as web applications became more sophisticated, there was a need for non-blocking, asynchronous operations, particularly when dealing with tasks like making HTTP requests or handling user interactions.
+
+Callbacks were introduced as a way to handle these asynchronous operations. They allow you to specify a function that will be executed once an asynchronous operation is complete. This approach worked, but it led to deeply nested code structures, which became known as callback hell.
+
+Callback hell was a natural consequence of trying to manage multiple asynchronous operations and their dependencies using callbacks. It was challenging to read and maintain code structured in this way, which hindered the development process and made codebases more error-prone.
+
+As a result, developers sought out alternative patterns and tools to address this issue. Promises and later async/await were introduced to provide cleaner, more readable solutions for handling asynchronous code, 
+  */
 }
 
-first(function () {
-  second(function () {
-    third();
-  });
-});
+// function first(callback) {
+//   console.log("in first");
+//   callback();
+// }
+// function second(callback) {
+//   setTimeout(() => {
+//     console.log("in second");
+//     callback();
+//   }, 2000);
+// }
+// function third() {
+//   console.log("in third");
+// }
+
+// first(function () {
+//   second(function () {
+//     third();
+//   });
+// });
 // ==============================
 
-function first() {
-  return new Promise((resolve, reject) => {
-    resolve("resolved func one");
-  });
-}
+// function first() {
+//   return new Promise((resolve, reject) => {
+//     resolve("resolved func one");
+//   });
+// }
 
-function second() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve("resolved func 2"), 2000);
-  });
-}
+// function second() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("resolved func 2"), 2000);
+//   });
+// }
 
-function third() {
-  console.log("third");
-}
+// function third() {
+//   console.log("third");
+// }
 
-first()
-  .then((res) => {
-    console.log(res);
-    return second();
-  })
-  .then((res2) => {
-    console.log(res2);
-    third();
-  })
-  .catch((err) => console.log(err));
+// // first()
+// //   .then((res) => {
+// //     console.log(res);
+// //     return second();
+// //   })
+// //   .then((res2) => {
+// //     console.log(res2);
+// //     third();
+// //   })
+// //   .catch((err) => console.log(err));
 
-Promise.all([
-  first().then((res) => console.log(res)),
-  second().then((res) => console.log(res)),
-  third(),
-]);
+// Promise.all([
+//   first().then((res) => console.log(res)),
+//   second().then((res) => console.log(res)),
+//   third(),
+// ]);
 
 // ------------------------------------------------------------------
 
@@ -339,3 +352,24 @@ Promise.all([
 //      })
 
 //   },5000);
+// -------
+
+//failed attemp at making a api call in a calback hell
+
+// const getTodo = async (id, callback) => {
+//   setTimeout(() => {
+//     const resp = fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+//     callback(resp);
+//   }, 2000);
+// };
+
+// getRepositories = (title, callback) => {
+//   callback(title);
+// };
+
+// getTodo(1, (todo) => {
+//   console.log("todo", todo);
+//   getRepositories(todo.title, (repos) => {
+//     console.log(repos);
+//   });
+// });

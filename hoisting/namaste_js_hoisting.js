@@ -14,16 +14,16 @@
 // };
 
 // -------------------------------
-// var test = 1;
-// function functionHoisting() {
-//   console.log(typeof test, test);
-//   test = 10;
-//   console.log(test);
-//   return;
-//   function test() {}
-// }
-// functionHoisting();
-// console.log(test);
+var test = 1;
+function functionHoisting() {
+  console.log(typeof test, test);
+  var test = 10;
+  console.log(test);
+  return;
+  function test() {}
+}
+functionHoisting();
+console.log(test);
 // -------------------------------------
 // alert(a());
 // function a() {

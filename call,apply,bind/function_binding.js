@@ -40,10 +40,10 @@
 //     console.log("hi " + this.firstname);
 //   },
 // };
-// // console.log(user);
+// console.log({user});
 // let sayHi = user.sayHi.bind(user);
-// // console.log(user);
-// console.dir(sayHi);
+// console.log({user});
+// console.dir(sayHi.boundThis); //has a property [[BoundThis]]
 // setTimeout(sayHi, 1000); // hi vivek (no error since function is bound)
 
 // // ---------------binding arguments-----------------------------------
@@ -55,7 +55,7 @@
 
 // let double = mul.bind(null, 2);
 // console.dir(mul);
-// console.dir(double);
+// console.dir(double);//has a property [[BoundThis]] and [[BoundArgs]]
 
 // console.log(double(3));
 // console.log(double(4));
@@ -81,7 +81,7 @@
 // printName.call(name1, "pune", "maharashtra");
 // printName.apply(name1, ["pune", "maharashtra"]); //similar to call but takes array of parameters as args
 // printNameBound = printName.bind(name1, "pune", "maharashtra"); // similar to
-// call, but returns a function to be ran later, wheras call will immediatly invoke
+// // call, but returns a function to be ran later, wheras call will immediatly invoke
 
 // console.log(printNameBound());
 
@@ -96,30 +96,37 @@
 
 // -------------myBind-------------------------------------
 
-let name1 = {
-  name: "vivek",
-  lastName: "lokhande",
-};
+// let name1 = {
+//   name: "vivek",
+//   lastName: "lokhande",
+// };
 
-function printName(hometown, state, area) {
-  console.log(
-    "my name is",
-    this.name + "",
-    this.lastName + " from " + hometown,
-    state,
-    area
-  );
-}
+// function printName(hometown, state, area) {
+//   console.log(
+//     "my name is",
+//     this.name + "",
+//     this.lastName + " from " + hometown,
+//     state,
+//     area
+//   );
+// }
 
-Function.prototype.myBind = function (context, ...args) {
-  console.log(context, ...args);
-  return (...args2) => {
-    this.apply(context, [...args, ...args2]);
-  };
-};
+// Function.prototype.myBind = function(context, ...args){
+//   return (arguments)=> {
+//     context.myFn = this;
+//     return context.myFn(arguments, ...args[0])
+//   }
+// }
 
-const printMyName = printName.myBind(name1, ["pune", "india"]);
-printMyName("hingne");
+// // Function.prototype.myBind = function (context, ...args) {
+// //   console.log(context, ...args);
+// //   return (...args2) => {
+// //     this.apply(context, [...args, ...args2]);
+// //   };
+// // };
+
+// const printMyName = printName.myBind(name1, ["pune", "india"]);
+// printMyName("hingne");
 // -------------myCall-------------------------------------
 
 // let name1 = {
@@ -137,9 +144,11 @@ printMyName("hingne");
 //   );
 // }
 
-// Function.prototype.myCall = function (context, ...args) {
-//   console.log(this);
-//   context.myFn = this;
-//   return context.myFn(...args);
-// };
+
+
+// // Function.prototype.myCall = function (context, ...args) {
+// //   console.log(this);
+// //   context.myFn = this;
+// //   return context.myFn(...args);
+// // };
 // const printMyName = printName.myCall(name1, "pune", "india", "hingne");

@@ -1,10 +1,10 @@
 // -------------------------forEach--------------------
 
 // const arr = [1, 2, 3];
-// // arr.forEach((item, i) => {
-// //   arr[i] = item * 2;
-// // });
-// // console.log(arr);
+// arr.forEach((item, i) => {
+//   arr[i] = item * 2;
+// });
+// console.log(arr);
 
 // Array.prototype.myForEach = function (callback) {
 //   for (let index = 0; index < this.length; index++) {

@@ -69,7 +69,7 @@
 //   this.name = name;
 
 //    Person.prototype.speak = () =>{
-//      console.log(`my name is: ${this.name}`);
+//      console.log(`my name is: ${this.name} ${this}`);
 //    }
 //    Person.prototype.speaker = function (){
 //     console.log(`my name is: ${this.name}`);
@@ -93,6 +93,8 @@
 // ------------------------
 // function foo() {
 //   let a = (b = 0);
+//  //since c is not defined in scope with  any keyword, let,var, const it is globally scoped
+//   c=1;
 //   a++;
 //   return a;
 // }
@@ -100,6 +102,7 @@
 // foo();
 // console.log(typeof a);
 // console.log(typeof b);
+// console.log({c});
 // ------------------------------
 // var myObject = {
 //   foo: "bar",
@@ -140,9 +143,9 @@
 // var myObj = {
 //   length: 5,
 //   method: function (fn) {
-//     fn();
-//     console.log(arguments);
-//     arguments[0]();
+//     fn();//10
+//     console.log(arguments); // [fn, 1]
+//     arguments[0](); // the fn method is called on arguments array i.e. arguments.fn() hence we get op as 2
 //   },
 // };
 
@@ -205,6 +208,7 @@
 // --------------------------------
 // let i;
 // for (i = 0; i < 3; i++) {
+//   console.log({i});
 //   const log = () => {
 //     console.log(i);
 //   };
@@ -216,27 +220,33 @@
 //   yield i;
 //   return "finished";
 // }
-
+// //we can instantiate a generator everytime
 // const gen = generator(10);
-// console.log(gen);
 // console.log(gen.next());
 // console.log(gen.next());
+// //-------------------------
+// const gen1 = generator(10);
+// console.log(gen1.next());
+// console.log(gen1.next());
+
+//---------------------------
+
 // ------------------normal func vs anonymous func----------------------
 
-let fun = function(){
-  console.log("anonymius bthc");
-}
-function gun(){
-  console.log("not anonymius bthc");
-}
-fun();
-console.log(fun.prototype.constructor);
-console.log(gun.prototype.constructor);
-// ----------------------------------------------
-var host = document.querySelector("#host");
+// let fun = function(){
+//   console.log("anonymius bthc");
+// }
+// function gun(){
+//   console.log("not anonymius bthc");
+// }
+// fun();
+// console.log(fun.prototype.constructor);
+// console.log(gun.prototype.constructor);
+// // ----------------------------------------------
+// var host = document.querySelector("#host");
 
-var root = host.attachShadow({mode: 'open'});
-var div = document.createElement('div');
-div.textContent = "THis is shadow dom";
-root.appendChild(div);
-console.dir(root);
+// var root = host.attachShadow({mode: 'open'});
+// var div = document.createElement('div');
+// div.textContent = "THis is shadow dom";
+// root.appendChild(div);
+// console.dir(root);
