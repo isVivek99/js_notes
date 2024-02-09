@@ -23,7 +23,7 @@ function* abcs() {
   yield "c";
 }
 
-console.log(abcs().next());
+console.log(abcs().next(), abcs());
 for (let letter of abcs()) {
   console.log(letter, letter.toUpperCase());
 }

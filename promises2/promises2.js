@@ -111,13 +111,13 @@
 // ----------------------------------------------
 
 // new Promise((resolve) => setTimeout(() => console.log(resolve(1)), 3000)),
-// ----------------------------------------------
+// // ----------------------------------------------
 // Promise.all([
 //   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
 //   new Promise((resolve) => setTimeout(() => resolve(2), 2000)), // 2
 //   new Promise((resolve) => setTimeout(() => resolve(3), 1000)), // 3
 // ]).then(console.log);
-// ------------------------------------------
+// // // ------------------------------------------
 // Promise.all([
 //   new Promise((resolve) => setTimeout(() => resolve(1), 3000)), // 1
 //   new Promise((resolve) => setTimeout(() => resolve(2), 2000)), // 2
@@ -194,33 +194,49 @@
 // promisified2().then(console.log).catch(console.log);
 // --------------------promisfy-------------------
 
-// const getSumAsync = (num1, num2, callback) => {
-//   if (!num1 || !num2) {
-//     return callback(new Error("Missing arguments"), null);
-//   }
-//   return callback(null, num1 + num2);
-// };
+const getSumAsync = (num1, num2, callback) => {
+  if (!num1 || !num2) {
+    return callback(new Error("Missing arguments"), null);
+  }
+  return callback(null, num1 + num2);
+};
 
-// function promisify(fn) {
-//   return function (...args) {
-//     return new Promise((resolve, reject) => {
-//       function customCallback(err, ...res) {
-//         if (err) {
-//           reject(err);
-//         } else {
-//           resolve(res.length === 1 ? res[0] : res);
-//         }
-//       }
-//       args.push(customCallback);
-//       fn.call(this, ...args);
-//     });
-//   };
-// }
+function promisify(fn) {
+  return function (...args) {
+    return new Promise((resolve, reject) => {
+      function customCallback(err, ...res) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res.length === 1 ? res[0] : res);
+        }
+      }
+      args.push(customCallback);
+      fn.call(this, ...args);
+    });
+  };
+}
 
-// const getSumPromise = promisify(getSumAsync);
-// getSumPromise(23, 34)
-//   .then(console.log)
-//   .catch((err) => console.log(err));
+function promisifyTwo(fn) {
+  return function (...args) {
+    return new Promise((resolve, reject) => {
+      function customCallback(err, sum) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(sum);
+        }
+      }
+
+      fn.apply(null, [...args, customCallback]);
+    });
+  };
+}
+
+const getSumPromise = promisifyTwo(getSumAsync);
+getSumPromise(23, 34)
+  .then(console.log)
+  .catch((err) => console.log(err));
 
 // -------------------async-await--------------------------
 
@@ -381,13 +397,13 @@
 
 // promise.all() polyfill
 
-const promises = [
-  new Promise((resolve) => resolve(1)),
-  new Promise((resolve) => resolve(3)),
-  Promise.resolve(2),
-  Promise.reject("bar"),
-  42,
-];
+// const promises = [
+//   new Promise((resolve) => resolve(1)),
+//   new Promise((resolve) => resolve(3)),
+//   Promise.resolve(2),
+//   Promise.reject("bar"),
+//   42,
+// ];
 
 // function newPromiseAll(promises) {
 //   const results = [];
@@ -406,41 +422,41 @@ const promises = [
 // }
 
 //using for of loop because forEach does not handle async calls and does not wait promise resolution.
-// function myPromiseAll(promises) {
-//   const results = [];
-//   return new Promise(async (res, rej) => {
-//     for (const [index, promise] of promises.entries()) {
-//       try {
-//         const result = await Promise.resolve(promise);
-//         results[index] = result;
-//       } catch (error) {
-//         rej(error);
-//         return; // Stop the loop if an error occurs
-//       }
+function myPromiseAll(promises) {
+  const results = [];
+  return new Promise(async (res, rej) => {
+    for (const [index, promise] of promises.entries()) {
+      try {
+        const result = await Promise.resolve(promise);
+        results[index] = result;
+      } catch (error) {
+        rej(error);
+        return; // Stop the loop if an error occurs
+      }
 
-//       if (results.length === promises.length) {
-//         res(results);
-//       }
-//     }
-//   });
-// }
+      if (results.length === promises.length) {
+        res(results);
+      }
+    }
+  });
+}
 
-// function newPromiseAllSettled(promises) {
-//   const results = [];
-//   let promisesCompleted = 0;
-//   return new Promise((resolve, reject) => {
-//     for (let i = 0; i < promises.length; i++) {
-//       Promise.resolve(promises[i])
-//         .then((res) => {
-//           results[i] = { status: "fullfilled", value: res };
-//         })
-//         .catch((e) => {
-//           results[i] = { status: "rejected", reason: `${e}` };
-//         });
-//     }
-//     resolve(results);
-//   });
-// }
+function newPromiseAllSettled(promises) {
+  const results = [];
+  let promisesCompleted = 0;
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < promises.length; i++) {
+      Promise.resolve(promises[i])
+        .then((res) => {
+          results[i] = { status: "fullfilled", value: res };
+        })
+        .catch((e) => {
+          results[i] = { status: "rejected", reason: `${e}` };
+        });
+    }
+    resolve(results);
+  });
+}
 
 // Promise.all(promises)
 //   .then((res) => console.log(res))
@@ -449,5 +465,8 @@ const promises = [
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
 
-const response2 = newPromiseAllSettled(promises);
+const response2 = myPromiseAll(promises);
 response2.then((res) => console.log(res));
+
+// const response2 = newPromiseAllSettled(promises);
+// response2.then((res) => console.log(res));

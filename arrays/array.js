@@ -21,17 +21,17 @@
 //   length: 2,
 // };
 
-// console.log(arraylike);
-// // alert(arr.concat(arraylike));
-// //console.log(newarr);
+// console.log(arr);
+// console.log(arr.concat(arraylike));
+// console.log(newarr);
 
 // let obj = { [[]]: "dance" };
 // console.log(obj);
 // ------------------------foreach---------------
 
-// arr=["ali","abdal","is","rich",NaN,]
-// arr.forEach((element,index,array) => {
-//     console.log(element,index,array);
+// arr = ["ali", "abdal", "is", "rich", NaN];
+// arr.forEach((element, index, array) => {
+//   console.log(element, index, array);
 // });
 
 // // ---------------------includes and indexOf()----

@@ -45,6 +45,7 @@
 //   };
 // }
 // console.log(add(5)(2)());
+
 //---------------------------
 // inifinte currying
 
@@ -56,15 +57,13 @@
 // }
 // console.log(add(5)(2)(4)(8)());
 
-
 // return func
 // add => 5
 // return func
 // func => 2 =>add(5+2)
 // return func
 //func => 4 => add(7+4)
-// return func 
+// return func
 // func => 8 => add(11+8)
 // return func
 // func => () => return 19
-

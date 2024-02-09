@@ -1,12 +1,11 @@
 const displayarea = document.querySelector("#display-area");
 const button = document.querySelector("#btn");
 
-
 function getData(x) {
   displayarea.innerHTML = x;
 }
 function clickFn() {
-  console.log('click');
+  console.log("click");
 }
 
 // function throttle(fn, limit) {
@@ -35,17 +34,15 @@ function throttle(fn, delay) {
       flag = false;
       timer = setTimeout(() => {
         flag = true;
-      }, delay)
+      }, delay);
     }
-  }
+  };
 }
 
 const betterFunction = throttle(getData, 1000);
 const betterFunctionTwo = throttle(clickFn, 1000);
 
-button.addEventListener(
-  "click", function () {
-    console.log(this);
-    betterFunctionTwo()
-  }
-);
+button.addEventListener("click", function () {
+  console.log(this);
+  betterFunctionTwo();
+});

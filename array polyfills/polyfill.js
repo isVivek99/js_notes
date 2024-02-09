@@ -18,7 +18,7 @@
 // console.log(arr);
 // ------------------------map--------------------
 
-arr = [1, 2, 3];
+// arr = [1, 2, 3];
 
 // let newArr = arr.map((item, index) => [item * 10, index]);
 // console.log(newArr);
@@ -38,7 +38,7 @@ arr = [1, 2, 3];
 // // ------------------------------------every--
 
 // let arr1 = [15, 22, 36, 21];
-// let check = arr.every((age) => age > 18);
+// let check = arr1.every((age) => age > 18);
 
 // console.log(check);
 
@@ -46,29 +46,30 @@ arr = [1, 2, 3];
 //   let result;
 //   for (let i = 0; i < this.length; i++) {
 //     result = callback(this[i]);
+//     if (!result) return result;
 //   }
 //   return result;
 // };
 
-// let myCheck = arr.myEvery((age) => age > 18);
+// let myCheck = arr1.myEvery((age) => age > 18);
 // console.log(myCheck);
 // --------------------some---------------------------
-// let arr2 = [15, 22, 36, 21];
+let arr2 = [15, 22, 36, 21];
 
-// Array.prototype.mySome = function (callback) {
-//   for (let i = 0; i < this.length; i++) {
-//     if (callback(this[i]) == true) return true;
-//   }
-//   return false;
-// };
+Array.prototype.mySome = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i]) == true) return true;
+  }
+  return false;
+};
 
-// let check = arr2.mySome((age) => age > 18);
-// console.log(check);
+let check = arr2.mySome((age) => age > 18);
+console.log(check);
 // ------------------filter-----------------------------------
 
-// arr = [50,46,47,37,49,51,66,42,37,36]
+arr = [50, 46, 47, 37, 49, 51, 66, 42, 37, 36];
 
-// let newArr = arr.filter((item)=>item>45)
+let newArr = arr.filter((item) => item > 45);
 // console.log(newArr);
 
 // Array.prototype.myMap = function(callback){
@@ -78,6 +79,16 @@ arr = [1, 2, 3];
 //     };
 //     return arrayList;
 // }
+
+// Array.prototype.myFilter = (callback) => {
+//   let arr = [];
+//   for (let i = 0; i < this.length; i++) {
+//     if (callback(this[i], i)) {
+//       arr.push(this[i]);
+//     }
+//   }
+//   return arr;
+// };
 
 // let filteredArr = arr.myMap((item,index)=>(item>45))
 // console.log(filteredArr);
@@ -99,19 +110,19 @@ arr = [1, 2, 3];
 // console.log(foundele);
 // ---------------------reduce-------------------------------------------
 
-arr = [2, 4, 3, 4, 6, 6, 4];
+// arr = [2, 4, 3, 4, 6, 6, 4];
 
-let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
-console.log(sum);
+// let sum = arr.reduce((accumalator, item) => (accumalator += item), 0);
+// console.log(sum);
 
-Array.prototype.myReduce = function (callback, initialValue) {
-  let res = initialValue;
-  for (let index = 0; index < this.length; index++) {
-    res = callback(res, this[index]);
-  }
-  return res;
-};
+// Array.prototype.myReduce = function (callback, initialValue) {
+//   let res = initialValue;
+//   for (let index = 0; index < this.length; index++) {
+//     res = callback(res, this[index]);
+//   }
+//   return res;
+// };
 
-let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);
-console.log(sum1);
+// let sum1 = arr.myReduce((accumalator, item) => (accumalator += item), 0);
+// console.log(sum1);
 // -----------------------------------------------------------------

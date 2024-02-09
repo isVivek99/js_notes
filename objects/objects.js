@@ -19,24 +19,22 @@
 // console.log(user == clone);
 // --------------------------------------------------
 // let user = {
-//     userName: "John",
-//     age: 30,
+//   userName: "John",
+//   age: 30,
 
-//     sayHi() {
-//       console.log(this.userName);
-//       console.log(this);
+//   sayHi() {
+//     console.log(this.userName);
+//     console.log(this);
+//   },
+// };
+// //   "use strict"
+// //   -----------------------------------
+// user.sayHi(); // John
 
-//     }
-//   -----------------------------------
-//   };
-//   "use strict"
-
-//   user.sayHi(); // John
-
-//   function sayHi(){
-//       console.log(this);
-//   }
-//   sayHi();
+// function sayHi() {
+//   console.log(this);
+// }
+// sayHi();
 // ---------------------------------------
 // function makeUser() {
 //     return {
@@ -50,52 +48,50 @@
 //   console.log( user.ref );
 // // ------------------------------------
 // function makeUser() {
+//   return {
+//     obj: this,
+//     name: "John",
+//     ref: function ref() {
+//       console.log(this);
+//       return this;
+//     },
+//   };
+// }
 
-//     return {
-//         obj:this,
-//       name: "John",
-//       ref : function ref() {
-//           console.log(this);
-//         return this;
-//       }
-//     };
-//   }
-
-//   let user = makeUser();
-//   console.log(user.obj);
-//   console.log(user.ref());
-//   console.log( user.ref().name ); // John
+// let user = makeUser();
+// console.log(user.obj);
+// console.log(user.ref());
+// console.log(user.ref().name); // John
 // ----------------------------------------------
 // function User(name) {
-//     this.name = name;
-//     this.isAdmin = false;
-//     this.sayHi = function(){
-//         console.log("Hello my name is", this.name);
-//     }
+//   this.name = name;
+//   this.isAdmin = false;
+//   this.sayHi = function () {
+//     console.log("Hello my name is", this.name);
+//   };
+// }
 
-//   }
-
-//   let user = new User("Jack");
-//   console.log(user);
-//   user.sayHi();
+// let user = new User("Jack");
+// console.log(user);
+// user.sayHi();
 //   --------------------------------
 
 // let obj = {};
 
-// function A() {  }
-// function B() {  }
+// function A() {}
+// function B() {}
 
-// console.log( new A() == new B() ); // true
+// console.log(new A() == new B()); // true
 // ---------------------------------------------------
 
-// function Calculator(){
-//     this.a,
+// function Calculator() {
+//   this.a,
 //     this.b,
-//     this.read = function(){
-//         this.a = prompt("enter var 1:");
-//         this.b = prompt("enter var 2:");
-//     }
-//     this.sum = () => (+this.a+ +this.b);
+//     (this.read = function () {
+//       this.a = prompt("enter var 1:");
+//       this.b = prompt("enter var 2:");
+//     });
+//   this.sum = () => +this.a + +this.b;
 // }
 
 // let calculator = new Calculator();
@@ -146,26 +142,30 @@
 
 // // --------getter and setter-------------------
 
-// obj = {
-//     name:"Sara",
-//     surname:"Nairobi",
+obj = {
+  name: "Sara",
+  surname: "Nairobi",
 
-//     get getter(){
-//         console.log(`my name is ${this.name} ${this.surname}`);
-//     }
-// ,
+  //The get syntax binds an object property to a function that
+  //will be called when that property is looked up. It can also be used in objects
 
-//     set _name(value){
-//         if(value.trim().length<4){
-//             alert("enter a valid name!");
-//         }
-//         this.name = value;
-//     }
-// }
+  get getter() {
+    console.log(`my name is ${this.name} ${this.surname}`);
+  },
+  set _name(value) {
+    if (value.trim().length < 4) {
+      alert("enter a valid name!");
+    }
+    this.name = value.trim();
+  },
+};
+//getter and setter use case
+// we can set the property from outside with validation
+// we can call the property from outside instead of a fn call looks like a property is called.
 
-// obj.getter;
-// obj._name = "vivek";
-// obj.getter;
+obj.getter;
+obj._name = "vivek";
+obj.getter;
 
 // -------
 
@@ -193,11 +193,11 @@
 //       console.log(this.x); // OUTPUT ????
 //       setTimeout(function () {
 //         var x = 1;
-//         console.log(this.x); // OUTPUT ????
+//         console.log(x, this.x); // OUTPUT ????
 //       }, 1000);
 //     },
 //   };
-//obj.bar();
+// obj.bar();
 // ----------------------------------------
 
 // const Employee = {
@@ -209,12 +209,12 @@
 // ---------------------------------------
 
 // var obj = {
-//   name:"vivek",
-//   skills:["css","html", "js", ]
-// }
+//   name: "vivek",
+//   skills: ["css", "html", "js"],
+// };
 
-// var obj2 = Object.assign({},obj);
-// var obj3 = Object.assign({},obj,{skills:[...obj.skills,"NextJs"]});
+// var obj2 = Object.assign({}, obj);
+// var obj3 = Object.assign({}, obj, { skills: [...obj.skills, "NextJs"] });
 // console.log(obj);
 // console.log(obj2);
 // console.log(obj3);
@@ -222,16 +222,24 @@
 // --------------Bind Pollyfill---------------------------
 
 // let nameObj = {
-//   firstName : "vivek",
-//   lastName : "lokhande"
-// }
+//   firstName: "vivek",
+//   lastName: "lokhande",
+// };
 
-// let printName = function(hometown,state,country){
-//   console.log("My name is",this.firstName+" "+this.lastName,"from",hometown,state,country);
-// }
+// let printName = function (hometown, state, country) {
+//   console.log(
+//     "My name is",
+//     this.firstName + " " + this.lastName,
+//     "from",
+//     hometown,
+//     state,
+//     country
+//   );
+// };
 
 // let printMyName = printName.bind(nameObj, "pune");
-// printMyName("Maharashtra","India");
+// console.log({ printMyName });
+// printMyName("Maharashtra", "India");
 
 // Function.prototype.myBind = function(...args){
 //   let self = this;

@@ -14,6 +14,7 @@
 //   firstName: "salam",
 //   lastName: "valekum",
 // };
+
 // myName.printfullName.call(otherName);
 // otherName.printfullName = newPrintFullName;
 // otherName.printfullName();
@@ -40,9 +41,10 @@
 //     console.log("hi " + this.firstname);
 //   },
 // };
-// console.log({user});
+// console.log({ user });
 // let sayHi = user.sayHi.bind(user);
-// console.log({user});
+// console.log({ user });
+// console.log({ sayHi });
 // console.dir(sayHi.boundThis); //has a property [[BoundThis]]
 // setTimeout(sayHi, 1000); // hi vivek (no error since function is bound)
 
@@ -55,7 +57,7 @@
 
 // let double = mul.bind(null, 2);
 // console.dir(mul);
-// console.dir(double);//has a property [[BoundThis]] and [[BoundArgs]]
+// console.dir(double); //has a property [[BoundThis]] and [[BoundArgs]]
 
 // console.log(double(3));
 // console.log(double(4));
@@ -111,19 +113,28 @@
 //   );
 // }
 
-// Function.prototype.myBind = function(context, ...args){
-//   return (arguments)=> {
-//     context.myFn = this;
-//     return context.myFn(arguments, ...args[0])
-//   }
-// }
+// Function.prototype.myBind = function (context, ...args) {
+//   let mycontext = context;
+//   let mythis = this;
+//   return function (...arguments) {
+//     console.log(mycontext, args);
+//     return mythis.apply(mycontext, [...args, ...arguments]);
+//   };
+// };
 
-// // Function.prototype.myBind = function (context, ...args) {
-// //   console.log(context, ...args);
-// //   return (...args2) => {
-// //     this.apply(context, [...args, ...args2]);
-// //   };
-// // };
+// Function.prototype.myBind = function (context, ...args) {
+//   return (arguments) => {
+//     context.myFn = this;
+//     return context.myFn(arguments, ...args[0]);
+//   };
+// };
+
+// Function.prototype.myBind = function (context, ...args) {
+//   console.log(context, ...args);
+//   return (...args2) => {
+//     this.apply(context, [...args, ...args2]);
+//   };
+// };
 
 // const printMyName = printName.myBind(name1, ["pune", "india"]);
 // printMyName("hingne");
@@ -143,8 +154,6 @@
 //     area
 //   );
 // }
-
-
 
 // // Function.prototype.myCall = function (context, ...args) {
 // //   console.log(this);

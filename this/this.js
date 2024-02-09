@@ -12,13 +12,15 @@
 //   };
 // }
 // const user = makeUser();
-// console.log(user.ref.name, user.ref2().name);
+// const temp = makeUser().ref2;
+
+
 // ------------------
 // let user = {
 //   name: "vivek",
 //   getDetails() {
 //     function getName() {
-//       console.log(this, this.name); // refers to wihndow object
+//       console.log(this, this.name); // refers to window object
 //     }
 //     getName();
 //   },
@@ -83,33 +85,34 @@
 //   Pet.prototype.getaName = function () {
 //     return this;
 //   };
-//   // this.getName = function(){return this.name};
+//   this.getName = function(){return this.name};
 
-//   this.getName = () => this.name;
+//   // this.getName = () => this.name;
 // }
 // console.dir(Pet);
 // const cat = new Pet("Fluffy");
 // console.log(cat.getName());
 // let printName = cat.getName;
+// console.log({printName});
 // console.log(printName());
 // const { getName } = cat;
 // console.log(getName());
 // // ---------------------------------
 
-// // const object = {
-// //     message: 'Hello, World!',
-// //     fun:function() {
-// //         console.log(this.message); // What is logged?
-// //     }
-// // };
+// const object = {
+//     message: 'Hello, World!',
+//     fun:function() {
+//         console.log(this.message); // What is logged?
+//     }
+// };
 
-// // function logMessage() {
-// //     console.log(this.message); // What is logged?
-// // }
+// function logMessage() {
+//     console.log(this.message); // What is logged?
+// }
 
-// // const boundLogMessage = logMessage.bind(object);
-// // setTimeout(object.fun, 1000);//undefined
-// // setTimeout(boundLogMessage,2000);
+// const boundLogMessage = logMessage.bind(object);
+// setTimeout(object.fun, 1000);//undefined
+// setTimeout(boundLogMessage,2000);
 // // ---------------------------------------------
 // // var length = 4;
 // // function callback() {
@@ -151,16 +154,16 @@
 // console.log(result.total);
 // // ----------------------
 
-const user = {
-  name: "vivek",
-  logMessage() {
-    console.log(this.name);
-  },
-};
+// const user = {
+//   name: "vivek",
+//   logMessage() {
+//     console.log(this.name);
+//   },
+// };
 
-setTimeout(user.logMessage, 1000); //op: undefined since we have passed this fn as a callback
-// and the context is not preserved
+// setTimeout(user.logMessage, 1000); //op: undefined since we have passed this fn as a callback
+// // and the context is not preserved
 
-setTimeout(() => {
-  user.logMessage();
-}, 1000); //op: vivek; since we have passed this fn in a callback and the context is preserved
+// setTimeout(() => {
+//   user.logMessage();
+// }, 1000); //op: vivek; since we have passed this fn in a callback and the context is preserved

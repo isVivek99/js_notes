@@ -16,20 +16,20 @@ const arr = [1, [2, 3, [4, [5]]]];
 //   return result;
 // }
 
-// function flatten(array, degree = 2) {
-//   const result = [];
-//   array.forEach((element) => {
-//     if (Array.isArray(element) && degree > 0) {
-//       console.log(...flatten(element, degree - 1));
-//       result.push(...flatten(element, degree - 1));
+// Array.prototype.myFlat = function (degree) {
+//   const arr = [];
+//   for (let i = 0; i < this.length; i++) {
+//     if (Array.isArray(this[i]) && degree > 0) {
+//       arr.push(...this[i].myFlat(degree - 1));
 //     } else {
-//       result.push(element);
+//       arr.push(this[i]);
 //     }
-//   });
-//   return result;
-// }
+//   }
+//   return arr;
+// };
 
 // const res = flatten(arr, 2);
+// const res = arr.myFlat(3);
 
 // console.log({ res });
 
@@ -40,33 +40,38 @@ const obj = {
   area: {
     city: "pune",
     state: "MH",
+    locality: {
+      street: 1,
+      houseNo: 12,
+    },
   },
   likes: ["sports", "martial-arts"],
 };
 
-function flattenObj(obj) {
-  const result = [];
-  Object.keys(obj).forEach((key) => {
-    if (typeof obj[key] === "object") {
-      result.push(...flattenObj(obj[key]));
-    } else {
-      result.push(obj[key]);
-    }
-  });
-  return result;
-}
-
-// const res = [];
 // function flattenObj(obj) {
+//   const result = [];
 //   Object.keys(obj).forEach((key) => {
 //     if (typeof obj[key] === "object") {
-//       flattenObj(obj[key]);
+//       result.push(...flattenObj(obj[key]));
 //     } else {
-//       res.push(obj[key]);
+//       result.push(obj[key]);
 //     }
 //   });
-//   return res;
+//   return result;
 // }
+
+let res = {};
+function flattenObj(obj, k) {
+  for (key in obj) {
+    let path = k ? `${k}.${key}` : key;
+    if (typeof obj[key] === "object") {
+      flattenObj(obj[key], path);
+    } else {
+      res = { ...res, [path]: obj[key] };
+    }
+  }
+  return res;
+}
 
 console.log(flattenObj(obj));
 

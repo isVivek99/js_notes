@@ -373,3 +373,27 @@ As a result, developers sought out alternative patterns and tools to address thi
 //     console.log(repos);
 //   });
 // });
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject("foo");
+  }, 300);
+});
+
+myPromise
+  .then(
+    (resp) => {
+      console.log(resp);
+    }
+    // (resp) => {
+    //   console.log("reject", resp);
+    //   return "vivek";
+    // }
+  )
+  .then(
+    (resp) => console.log(resp)
+    // (resp) => console.log("reject", resp)
+  )
+  .catch((err) => {
+    throw new Error(err);
+  });
