@@ -88,24 +88,56 @@ function checkPangram(str) {
 // console.log(checkPangram(str));
 // --------------anagram------------
 
-function anagramPair(arr) {
-  const map = new Map();
+// function anagramPair(arr) {
+//   const map = new Map();
 
-  for (let i = 0; i < arr.length; i++) {
-    map.set(arr[i].split("").sort().join(""), []);
-  }
+//   for (let i = 0; i < arr.length; i++) {
+//     map.set(arr[i].split("").sort().join(""), []);
+//   }
 
-  for (let i = 0; i < arr.length; i++) {
-    let element = arr[i].split("").sort().join("");
+//   for (let i = 0; i < arr.length; i++) {
+//     let element = arr[i].split("").sort().join("");
 
-    if (map.has(element)) {
-      map.set(element, [...map.get(element), arr[i]]);
-    }
-  }
+//     if (map.has(element)) {
+//       map.set(element, [...map.get(element), arr[i]]);
+//     }
+//   }
 
-  return map;
-}
+//   return map;
+// }
 
-const anagramMap = anagramPair(["eat", "tea", "tan", "ate", "nat", "bat"]);
+// const anagramMap = anagramPair(["eat", "tea", "tan", "ate", "nat", "bat"]);
 
-console.log([...anagramMap.values()], anagramMap);
+// console.log([...anagramMap.values()], anagramMap);
+
+// -----groupBy Pollyfill-----
+
+// const groupBy = (values, keyFinder) => {
+//   console.log(values, keyFinder);
+//   const target = {};
+
+//   for (value of values) {
+//     let ans =
+//       typeof keyFinder === "function" ? keyFinder(value) : value[keyFinder];
+
+//     if (!target[ans]) {
+//       target[ans] = [value];
+//     } else {
+//       target[ans] = [...target[ans], value];
+//     }
+//   }
+//   console.log(target);
+//   return target;
+// };
+
+// console.log(groupBy([6.1, 4.2, 6.3], Math.floor));
+// console.log(groupBy(["one", "two", "three"], "length"));
+// const books = [
+//   { title: "The Catcher in the Rye", genre: "Fiction" },
+//   { title: "Sapiens", genre: "Non-Fiction" },
+//   { title: "Dune", genre: "Science Fiction" },
+//   { title: "To Kill a Mockingbird", genre: "Fiction" },
+// ];
+// groupBy(books, (book) => book.genre);
+// { 6: [6.1, 6.3], 4: [4.2] }
+// { 3: ['one', 'two'], 5: ['three'] }

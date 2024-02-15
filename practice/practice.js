@@ -168,35 +168,75 @@ let longString = "abracadabra";
 
 // -----------------------------------------------------------
 
-function convert(arr) {
-  let newArr = [];
-  let count = 0;
-  for (let i = 0; i < arr.length; i++) {
-    let prev;
-    if (count === 0) {
-      prev = arr.indexOf(arr[i]);
-      console.log(prev);
-    }
-    let current = i;
-    if (arr[current] !== arr[i + 1]) {
-      console.log("increase count");
-      count++;
-      console.log("count:", count);
-    }
-    if (count === 2) {
-      console.log(current + 1);
-      //console.log(arr.splice(prev,current+1));
-      newArr = [...newArr, arr.splice(prev, current + 1)];
-      count = 0;
-    }
-  }
-  return newArr;
+// function convert(arr) {
+//   let newArr = [];
+//   let count = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     let prev;
+//     if (count === 0) {
+//       prev = arr.indexOf(arr[i]);
+//       console.log(prev);
+//     }
+//     let current = i;
+//     if (arr[current] !== arr[i + 1]) {
+//       console.log("increase count");
+//       count++;
+//       console.log("count:", count);
+//     }
+//     if (count === 2) {
+//       console.log(current + 1);
+//       //console.log(arr.splice(prev,current+1));
+//       newArr = [...newArr, arr.splice(prev, current + 1)];
+//       count = 0;
+//     }
+//   }
+//   return newArr;
+// }
+
+// let arr = [1, 1, 2, 2, 3, 3, 4, 4, 4];
+
+// let nestedArray = convert(arr);
+// console.log(nestedArray);
+
+// -------Browser-------
+
+// ● visit(url): Marks the entry of the URL in the history.
+// ● current(): Returns the URL of the current page.
+// ● backward(): Navigate to the previous url.
+// ● forward(): Navigate to the next url.
+
+function Browser() {
+  this.history = [];
+  this.index = -1;
+
+  this.visit = function (url) {
+    this.history[++this.index] = url;
+  };
+  this.current = function () {
+    return this.history[this.index];
+  };
+  this.backward = function () {
+    this.index = Math.max(0, this.index - 1);
+    console.log(this.index);
+    return this.history[this.index];
+  };
+  this.forward = function () {
+    this.index = Math.min(this.history.length - 1, this.index + 1);
+    return this.history[this.index];
+  };
 }
+const bh = new Browser();
 
-let arr = [1, 1, 2, 2, 3, 3, 4, 4, 4];
+bh.visit("A");
+console.log(bh.current());
+bh.visit("B");
+console.log(bh.current());
+bh.visit("C");
 
-let nestedArray = convert(arr);
-console.log(nestedArray);
+console.log(bh.forward());
+console.log(bh.current());
+console.log(bh.backward());
+console.log(bh.current());
 
 // --------------------------------------------------------
 

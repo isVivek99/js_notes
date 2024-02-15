@@ -397,13 +397,13 @@ getSumPromise(23, 34)
 
 // promise.all() polyfill
 
-// const promises = [
-//   new Promise((resolve) => resolve(1)),
-//   new Promise((resolve) => resolve(3)),
-//   Promise.resolve(2),
-//   Promise.reject("bar"),
-//   42,
-// ];
+const promises = [
+  new Promise((resolve) => resolve(1)),
+  new Promise((resolve) => resolve(3)),
+  Promise.resolve(2),
+  Promise.reject("bar"),
+  42,
+];
 
 // function newPromiseAll(promises) {
 //   const results = [];
@@ -441,22 +441,22 @@ function myPromiseAll(promises) {
   });
 }
 
-function newPromiseAllSettled(promises) {
-  const results = [];
-  let promisesCompleted = 0;
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < promises.length; i++) {
-      Promise.resolve(promises[i])
-        .then((res) => {
-          results[i] = { status: "fullfilled", value: res };
-        })
-        .catch((e) => {
-          results[i] = { status: "rejected", reason: `${e}` };
-        });
-    }
-    resolve(results);
-  });
-}
+// function newPromiseAllSettled(promises) {
+//   const results = [];
+//   let promisesCompleted = 0;
+//   return new Promise((resolve, reject) => {
+//     for (let i = 0; i < promises.length; i++) {
+//       Promise.resolve(promises[i])
+//         .then((res) => {
+//           results[i] = { status: "fullfilled", value: res };
+//         })
+//         .catch((e) => {
+//           results[i] = { status: "rejected", reason: `${e}` };
+//         });
+//     }
+//     resolve(results);
+//   });
+// }
 
 // Promise.all(promises)
 //   .then((res) => console.log(res))
@@ -470,3 +470,10 @@ response2.then((res) => console.log(res));
 
 // const response2 = newPromiseAllSettled(promises);
 // response2.then((res) => console.log(res));
+
+console.log(
+  JSON.stringify({
+    x: 1,
+    y: () => {},
+  })
+);

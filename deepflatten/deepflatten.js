@@ -60,19 +60,19 @@ const obj = {
 //   return result;
 // }
 
-let res = {};
-function flattenObj(obj, k) {
-  for (key in obj) {
-    let path = k ? `${k}.${key}` : key;
-    if (typeof obj[key] === "object") {
-      flattenObj(obj[key], path);
-    } else {
-      res = { ...res, [path]: obj[key] };
-    }
-  }
-  return res;
-}
+// let res = {};
+// function flattenObj(obj, k) {
+//   for (key in obj) {
+//     let path = k ? `${k}.${key}` : key;
+//     if (typeof obj[key] === "object") {
+//       flattenObj(obj[key], path);
+//     } else {
+//       res = { ...res, [path]: obj[key] };
+//     }
+//   }
+//   return res;
+// }
 
-console.log(flattenObj(obj));
+// console.log(flattenObj(obj));
 
 // {a: undefined, b: { c: { d: undefined, e: ['BFE.dev', undefined]} }} spec  , (diff is too big, full diff )
